@@ -33,8 +33,8 @@ debug/
 *.log
 
 # Large checkpoints may be distributed through Git LFS or Zenodo.
-trained_models/*.pt
-trained_models/*.pth
+# trained_models/*.pt
+# trained_models/*.pth
 
 !trained_models/README.md
 !trained_models/SHA256SUMS.txt
