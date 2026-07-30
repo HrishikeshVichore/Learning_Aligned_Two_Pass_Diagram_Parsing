@@ -1,0 +1,22 @@
+# Core notebook environment
+jupyterlab>=4.0
+ipykernel>=6.0
+nbformat>=5.9
+nbclient>=0.10
+nbconvert>=7.0
+
+# Numerical and graph utilities
+numpy>=1.24
+pandas>=2.0
+networkx>=3.1
+tqdm>=4.66
+
+# Image processing and visualization
+Pillow>=10.0
+opencv-python>=4.8
+scikit-image>=0.21
+matplotlib>=3.7
+
+# Frozen-model inference
+torch>=2.1
+torchvision>=0.16

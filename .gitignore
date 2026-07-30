@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+.conda/
+
+# IDE and OS
+.vscode/
+.idea/
+.project
+.pydevproject
+.DS_Store
+Thumbs.db
+
+# Downloaded third-party data and generated working copies
+external_data/
+workspace/
+converted_annotations/*/*/images/
+
+# Generated inference outputs
+sample_outputs/final_run/
+outputs/
+debug/
+*.log
+
+# Large checkpoints may be distributed through Git LFS or Zenodo.
+trained_models/*.pt
+trained_models/*.pth
+
+!trained_models/README.md
+!trained_models/SHA256SUMS.txt

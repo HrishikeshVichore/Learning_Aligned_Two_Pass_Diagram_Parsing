@@ -1,0 +1,2520 @@
+{
+  "test": [
+    {
+      "image": "writer10_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer10_10b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer12_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer12_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer15_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer15_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer10_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer10_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer12_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer12_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer15_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer15_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer16_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer16_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_8b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 7
+    },
+    {
+      "image": "writer12_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer15_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer16_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer15_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer16_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer15_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer10_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer15_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer15_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer17_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer15_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer10_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer16_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer17_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer16_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer12_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer16_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer17_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer16_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer12_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer17_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer17_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer15_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer16_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer16_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer18_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer18_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer17_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer17_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer17_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer16_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer18_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer17_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer17_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer17_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer18_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer18_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer18_13b.png",
+      "status": "ok",
+      "arrows": 10,
+      "nodes": 10
+    },
+    {
+      "image": "writer2_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer24_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer15_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer18_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer18_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer24_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer24_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer17_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_9b_.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer26_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_10b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer16_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer24_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer16_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer24_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer24_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer26_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer26_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer17_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer17_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer26_12b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer26_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer28_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer28_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer26_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer26_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer24_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer26_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer28_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer18_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer28_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer31_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer28_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer24_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer28_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer31_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer28_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer28_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer28_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer31_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer28_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer32_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer31_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer31_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer31_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer31_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer28_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer31_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer32_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer26_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer26_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer32_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer32_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer35_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer28_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer32_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer35_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer31_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer32_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer5_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer5_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer5_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer32_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer6_11b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer32_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer6_2b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer32_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer32_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer5_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_8b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 7
+    },
+    {
+      "image": "writer35_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer6_3b.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer6_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_12b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer6_6b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer6_4b.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer6_1b.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer6_10b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer6_13b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer31_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer6_14b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer6_8b.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer32_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer6_9b.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer32_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer35_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer6_5b.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer6_7b.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    }
+  ],
+  "train": [
+    {
+      "image": "writer31_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer5_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer31_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer5_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer20_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer4_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer29_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer18_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer9_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer13_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer31_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer20_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer27_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer33_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer17_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer17_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer21_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer21_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer30_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer11_2_.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer6_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer18_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer12_3_.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer9_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer30_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer16_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer34_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer12_4_.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer2_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer19_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer5_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer33_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer7_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer16_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer8_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer25_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer16_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer24_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer25_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer9_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer13_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer30_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer9_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer21_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer9_2_.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer9_7_.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer16_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer7_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer20_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer7_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer1_7.png",
+      "status": "ok",
+      "arrows": 10,
+      "nodes": 9
+    },
+    {
+      "image": "writer1_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer26_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer29_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer5_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer6_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer4_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer12_1_.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer23_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_6_.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer17_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer17_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer19_1.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 8
+    },
+    {
+      "image": "writer14_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer21_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer24_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer31_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer5_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer12_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer7_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer23_5.png",
+      "status": "ok",
+      "arrows": 12,
+      "nodes": 11
+    },
+    {
+      "image": "writer26_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer4_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer1_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer21_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer23_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer21_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer33_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer18_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer6_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer13_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer25_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer33_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer23_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer24_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer9_4_.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer7_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer26_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer16_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer25_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer33_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer21_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer4_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer21_6.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer21_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer23_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer21_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer13_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer25_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer6_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer34_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer33_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer2_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer26_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer34_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer4_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer8_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer31_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer9_6_.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer27_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer30_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer8_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer18_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer34_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer26_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer8_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer7_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer23_7.png",
+      "status": "ok",
+      "arrows": 10,
+      "nodes": 9
+    },
+    {
+      "image": "writer31_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer18_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer5_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer20_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer17_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer9_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer31_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer26_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer4_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer6_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer14_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer5_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer17_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer1_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer7_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer7_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer16_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer6_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer4_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer4_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer11_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer9_3_.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer9_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer33_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer26_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer30_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer31_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer26_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer12_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer14_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer31_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer4_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer5_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer30_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer2_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer34_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer5_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer27_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer31_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer33_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer4_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer14_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer12_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer7_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer20_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer4_2.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer7_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer24_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer18_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer24_14.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer1_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer6_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer21_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer16_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer33_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer13_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer12_5_.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer1_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer25_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer1_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer33_11.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 6
+    },
+    {
+      "image": "writer9_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer26_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer22_4.png",
+      "status": "ok",
+      "arrows": 6,
+      "nodes": 6
+    },
+    {
+      "image": "writer29_8.png",
+      "status": "ok",
+      "arrows": 7,
+      "nodes": 7
+    },
+    {
+      "image": "writer17_10.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer23_1.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer14_6.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer4_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_3.png",
+      "status": "ok",
+      "arrows": 4,
+      "nodes": 5
+    },
+    {
+      "image": "writer34_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer4_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer31_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer34_7.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 9
+    },
+    {
+      "image": "writer14_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer34_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer13_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer21_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer33_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer30_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer13_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer30_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer34_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer33_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer4_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer33_13.png",
+      "status": "ok",
+      "arrows": 11,
+      "nodes": 10
+    },
+    {
+      "image": "writer21_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer7_12.png",
+      "status": "ok",
+      "arrows": 8,
+      "nodes": 8
+    },
+    {
+      "image": "writer29_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer21_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer30_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer13_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer33_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    },
+    {
+      "image": "writer7_9.png",
+      "status": "ok",
+      "arrows": 5,
+      "nodes": 5
+    },
+    {
+      "image": "writer3_5.png",
+      "status": "ok",
+      "arrows": 13,
+      "nodes": 11
+    }
+  ]
+}

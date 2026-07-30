@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software or its derived annotations, please cite the accompanying paper and this software release."
+title: "Topology-Aware Structural Parsing of Hand-Drawn Diagrams via Learning-Aligned Decoding: Reproduction Materials"
+type: software
+version: 1.0.0
+authors:
+  - family-names: Vichore
+    given-names: Hrishikesh
+    orcid: "https://orcid.org/0009-0004-0315-7924"
+    affiliation: "Visvesvaraya National Institute of Technology, Nagpur"
+  - family-names: Radke
+    given-names: Mansi
+    affiliation: "Visvesvaraya National Institute of Technology, Nagpur"
+  - family-names: Kumar
+    given-names: Praveen
+    affiliation: "Visvesvaraya National Institute of Technology, Nagpur"
+license: Apache-2.0
+keywords:
+  - handwritten diagram recognition
+  - graph reconstruction
+  - flowchart parsing
+  - finite automata
+  - document analysis
+  - deep learning
