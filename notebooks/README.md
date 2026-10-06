@@ -1,18 +1,17 @@
-# Reproduction notebooks
+# Publication notebooks
 
-| Notebook | Purpose | Required in the default workflow |
-|---|---|---:|
-| `00_Convert_Original_Annotations.ipynb` | Regenerate the routed per-image graph annotations | Optional |
-| `01_Resize_Dataset_Images_to_1024.ipynb` | Reconstruct the 1024 × 1024 image folders | Yes |
-| `02_Run_Two_Pass_Inference_and_Evaluation.ipynb` | Run the frozen models, assembler, and evaluator | Yes |
-| `03_Run_Complete_Reproduction.ipynb` | Download the source data, insert paths, and orchestrate reproduction | Recommended |
+All notebooks are platform-neutral and use a master configuration cell rather than notebook-host-specific paths.
 
-All user-specific paths remain blank in Notebooks 00--02.
+## 01_Reproduce_Train_Infer_Evaluate.ipynb
 
-The master runner creates temporary path-filled copies under
-`workspace/prepared_notebooks/` and stores completed executions under
-`workspace/executed_notebooks/`. It never modifies the distributed publication
-notebooks.
+Complete proposed-method workflow: annotation conversion, image reconstruction, optional model training, two-pass inference, graph export, and revised evaluation. Training is opt-in; compatible checkpoints are used directly when supplied.
 
-By default, the master runner uses the supplied converted annotations. Set
-`REGENERATE_ANNOTATIONS = True` only to rerun Notebook 00.
+## 02_Parameter_Sensitivity.ipynb
+
+Deterministic-assembler sensitivity experiment. Use `SENSITIVITY_STAGE="stage1"` for the five functional groups and coordinated stress conditions, or `SENSITIVITY_STAGE="stage2"` for the individual G1 parameter drill-down.
+
+## 03_Arrow_RCNN_Common_Protocol_Baseline.ipynb
+
+Arrow R-CNN common-protocol baseline. Uses the common split and the same directed-link/nSEE evaluation protocol as the proposed framework. Supports training/resume and evaluation from a compatible checkpoint.
+
+Saved execution outputs are deliberately removed from the notebook files. Long-run evidence is provided under `../logs/`.

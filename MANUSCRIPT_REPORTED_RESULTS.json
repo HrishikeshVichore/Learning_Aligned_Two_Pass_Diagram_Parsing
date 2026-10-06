@@ -1,0 +1,72 @@
+{
+  "proposed_framework": {
+    "node_f1_percent": 98.57,
+    "matched_node_box_iou_macro_percent": 82.71,
+    "soft_cldice_macro_percent": 96.72,
+    "endpoint_l2_macro_px": 3.77,
+    "link_f1_percent": 92.49,
+    "nsee": 0.09,
+    "loop_back_recall_percent": 95.24,
+    "decision_branch_recall_percent": 94.04,
+    "matched_link_coverage_percent": 94.94,
+    "valid_endpoint_coverage_percent": 94.94,
+    "soft_cldice_pooled_percent": 99.35,
+    "endpoint_l2_pooled_mean_px": 3.44
+  },
+  "arrow_rcnn_common_protocol": {
+    "node_f1_percent": 99.95,
+    "matched_node_box_iou_macro_percent": 97.15,
+    "link_f1_percent": 97.58,
+    "nsee": 0.021,
+    "endpoint_l2_macro_px": 5.35,
+    "loop_back_recall_percent": 95.24,
+    "decision_branch_recall_percent": 97.64,
+    "selected_score_threshold": 0.8,
+    "fixed_score_threshold": 0.7,
+    "fixed_threshold_link_f1_percent": 97.48,
+    "fixed_threshold_nsee": 0.022,
+    "family_link_f1_percent": {
+      "fa": 97.52,
+      "fca": 95.48,
+      "fcb": 99.63
+    }
+  },
+  "parameter_sensitivity": {
+    "reference_link_f1_percent": 92.494,
+    "reference_nsee": 0.09,
+    "reference_link_precision_percent": 90.169,
+    "reference_link_recall_percent": 94.942,
+    "group_max_abs_delta_link_f1_pp": {
+      "G2_geometry_attachment": 0.224,
+      "G3_path_tracing_recovery": 0.9,
+      "G4_conflict_branch_duplicate": 0.027,
+      "G5_graph_context_finalization_node_refinement": 0.266
+    },
+    "G1_evidence_admission": {
+      "relaxed_link_f1_percent": 92.526,
+      "strict_link_f1_percent": 86.49,
+      "strict_nsee": 0.191,
+      "strict_recall_percent": 86.631
+    },
+    "all_relaxed_link_f1_percent": 92.011,
+    "all_strict_link_f1_percent": 82.628,
+    "all_strict_nsee": 0.24,
+    "node_extent": {
+      "relaxed_link_f1_percent": 92.592,
+      "strict_link_f1_percent": 86.443,
+      "strict_delta_pp": -6.051,
+      "other_parameters_max_abs_delta_pp": 0.062,
+      "strict_family_link_f1_percent": {
+        "fa": 91.959,
+        "fca": 80.978,
+        "fcb": 87.899
+      },
+      "pass1_candidates_reference": 6664,
+      "pass1_candidates_strict": 5287,
+      "final_edges_reference": 3560,
+      "final_edges_strict": 3405,
+      "endpoint_repairs_reference": 317,
+      "endpoint_repairs_strict": 912
+    }
+  }
+}

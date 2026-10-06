@@ -1,0 +1,1617 @@
+# Publication execution log: Arrow R-CNN common-protocol baseline
+# Source: supplied saved 90k/resume execution log.
+# Platform-specific paths/storage/debugger chatter removed; training/test trace and wall-clock timing retained.
+# The manuscript comparison below uses macro primary-table quantities. Detailed run output later in this log also reports pooled geometry diagnostics where applicable.
+
+MANUSCRIPT-REPORTED COMMON-PROTOCOL COMPARISON
+----------------------------------------------
+Arrow R-CNN common-protocol reimplementation:
+  Node F1                    : 99.95%
+  Matched Node Box IoU       : 97.15%
+  Link F1                    : 97.58%
+  nSEE                       : 0.021
+  Endpoint L2 (macro)        : 5.35 px
+  Loop-back recall           : 95.24%
+  Decision-branch recall     : 97.64%
+
+Proposed framework:
+  Node F1                    : 98.57%
+  Matched Node Box IoU       : 82.71%
+  Link F1                    : 92.49%
+  nSEE                       : 0.090
+  Endpoint L2 (macro)        : 3.77 px
+  Loop-back recall           : 95.24%
+  Decision-branch recall     : 94.04%
+
+Threshold robustness:
+  validation-selected threshold 0.80 -> Link F1 97.58%, nSEE 0.021
+  fixed threshold 0.70              -> Link F1 97.48%, nSEE 0.022
+
+Family-wise Arrow R-CNN Link F1:
+  FA  : 97.52%
+  FCA : 95.48%
+  FCB : 99.63%
+
+RUN TRACE
+---------
+[21.3s] Python      : 3.12.13
+[21.3s] PyTorch     : 2.10.0+cu128
+[21.3s] torchvision : 0.25.0+cu128
+[21.3s] CUDA        : True
+[21.3s] GPU count   : 2
+[21.3s] GPU 0      : Tesla T4
+[21.3s] GPU 1      : Tesla T4
+[31.4s] {
+[31.4s] "fa": {
+[31.4s] "train": 132,
+[31.4s] "val": 84,
+[31.4s] "test": 83
+[31.4s] },
+[31.4s] "fca": {
+[31.4s] "train": 248,
+[31.4s] "test": 171
+[31.4s] },
+[31.4s] "fcb": {
+[31.4s] "train": 280,
+[31.4s] "val": 196,
+[31.4s] "test": 196
+[31.4s] }
+[31.4s] }
+[49.3s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fa/train.json
+[49.7s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fa/val.json
+[49.9s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fa/test.json
+[50.2s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fca/train.json
+[50.5s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fca/test.json
+[50.7s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fcb/train.json
+[51.0s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fcb/val.json
+[51.3s] [annotations] https://raw.githubusercontent.com/bernhardschaefer/handwritten-diagram-datasets/main/datasets/fcb/test.json
+[89.0s] Learning pool 940 Counter({'fcb': 476, 'fca': 248, 'fa': 216})
+[89.0s] Train 752 Counter({'fcb': 381, 'fca': 198, 'fa': 173})
+[89.0s] Val 188 Counter({'fcb': 95, 'fca': 50, 'fa': 43})
+[89.0s] Test 450 Counter({'fcb': 196, 'fca': 171, 'fa': 83})
+[89.0s] Official arrow endpoint-order audit:
+[89.0s] fa {'informative': 1417, 'slot0_tail_slot1_head': 1417, 'reversed': 0, 'ties': 0}
+[89.0s] fca {'informative': 3092, 'slot0_tail_slot1_head': 3092, 'reversed': 0, 'ties': 0}
+[89.0s] fcb {'informative': 4569, 'slot0_tail_slot1_head': 4568, 'reversed': 1, 'ties': 0}
+[89.0s] decisive support for slot0=tail/source, slot1=head/target: 9077/9078 = 99.989%
+[89.0s] Prebuilding records...
+[136.2s] Raster/annotation canvas audit: mismatched=1390, unreadable=0
+[136.2s] first mismatches: [{'family': 'fcb', 'sample_id': 'writer009_fc_019', 'actual': [1333, 895], 'expected': [1024, 1024]}, {'family': 'fa', 'sample_id': 'writer011_fa_008', 'actual': [1333, 777], 'expected': [1024, 1024]}, {'family': 'fcb', 'sample_id': 'writer013_fc_014', 'actual': [1085, 1333], 'expected': [1024, 1024]}, {'family': 'fa', 'sample_id': 'writer004_fa_003', 'actual': [1333, 587], 'expected': [1024, 1024]}, {'family': 'fcb', 'sample_id': 'writer016_fc_015', 'actual': [1333, 1059], 'expected': [1024, 1024]}]
+[136.2s] Mismatched rasters will be resized to the JSON canvas before augmentation.
+[136.2s] Annotation audit: Counter({'text': 12860, 'arrow': 10490, 'node': 9085})
+[136.4s] Endpoint encoding regression test: PASS
+[140.4s] Dataset augmentation preflight: PASS (144 augmented samples checked)
+[140.4s] Geometry/target regression tests: PASS
+[140.6s] ========================================================================
+[140.6s] RESOLVED RUN MODE: train
+[140.6s] Training profile: paper_90k
+[140.6s] Target optimizer steps: 90000
+[140.6s] ========================================================================
+[140.6s] Building Arrow R-CNN on cuda:0
+[141.2s] 0%|          | 0.00/171M [00:00<?, ?B/s]
+[141.3s] 0%|          | 0.00/171M [00:00<?, ?B/s]
+  6%|▌         | 10.6M/171M [00:00<00:01, 111MB/s]
+[141.4s] 6%|▌         | 10.6M/171M [00:00<00:01, 111MB/s]
+ 18%|█▊        | 30.0M/171M [00:00<00:00, 165MB/s]
+[141.5s] 18%|█▊        | 30.0M/171M [00:00<00:00, 165MB/s]
+ 29%|██▉       | 49.1M/171M [00:00<00:00, 181MB/s]
+[141.6s] 29%|██▉       | 49.1M/171M [00:00<00:00, 181MB/s]
+ 41%|████      | 69.2M/171M [00:00<00:00, 192MB/s]
+[141.7s] 41%|████      | 69.2M/171M [00:00<00:00, 192MB/s]
+ 53%|█████▎    | 89.9M/171M [00:00<00:00, 201MB/s]
+[141.8s] 53%|█████▎    | 89.9M/171M [00:00<00:00, 201MB/s]
+ 64%|██████▍   | 110M/171M [00:00<00:00, 204MB/s]
+[141.9s] 64%|██████▍   | 110M/171M [00:00<00:00, 204MB/s]
+ 76%|███████▌  | 129M/171M [00:00<00:00, 193MB/s]
+[142.1s] 76%|███████▌  | 129M/171M [00:00<00:00, 193MB/s]
+ 87%|████████▋ | 148M/171M [00:00<00:00, 188MB/s]
+[142.2s] 87%|████████▋ | 148M/171M [00:00<00:00, 188MB/s]
+ 97%|█████████▋| 166M/171M [00:00<00:00, 185MB/s]
+[142.2s] 97%|█████████▋| 166M/171M [00:00<00:00, 185MB/s]
+100%|██████████| 171M/171M [00:00<00:00, 186MB/s]
+[142.3s] 100%|██████████| 171M/171M [00:00<00:00, 186MB/s]
+[142.3s]
+[142.3s]
+[142.9s] GPU count available : 2
+[142.9s] Multi-GPU training  : False
+[142.9s] Training wrapper    : single-device
+[142.9s] Detection-aware split + scalar-loss reduction regression tests: PASS
+[144.4s] End-to-end pretraining preflight: PASS | detections=300, pred_nodes=0, pred_edges=0, sanity_link_f1=0.0000
+[146.4s] Training forward+backward preflight: PASS | global_batch=2 | per_gpu_chunks=[2] | base_params_with_grad=136
+[146.4s] global physical batch=2, per-GPU chunks=[2], accumulation=2, effective batch=4, lr=0.005
+[150.9s] Checkpoint step: 57800
+[150.9s] Checkpoint config metadata: {'train_profile': 'paper_90k', 'max_optimizer_steps': 90000, 'base_lr_batch4': 0.005, 'momentum': 0.9, 'weight_decay': 0.0001, 'arrow_proposal_iou_threshold': 0.7, 'arrow_loss_weight': 1.0, 'quick_test': False, 'lr_milestones': [60000, 80000], 'arrow_endpoint_convention': 'slot0_tail_slot1_head', 'common_canvas': [1024, 1024], 'auto_resize_images_to_json_canvas': True, 'use_multi_gpu': True, 'gpu_count': 2, 'multi_gpu_strategy': 'detection_data_parallel'}
+[150.9s] Resuming training from optimizer step 57800
+[150.9s] [ram] before long training loop: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[189.9s] [ram] step 57850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[189.9s] [train] 57850/90000 loss=0.1356 arrow=0.0078 lr=5.00e-03 elapsed=0.6m
+[229.3s] [ram] step 57900: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[229.3s] [train] 57900/90000 loss=0.1338 arrow=0.0078 lr=5.00e-03 elapsed=1.3m
+[269.9s] [ram] step 57950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[269.9s] [train] 57950/90000 loss=0.1794 arrow=0.0092 lr=5.00e-03 elapsed=2.0m
+[311.5s] [ram] step 58000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[311.5s] [train] 58000/90000 loss=0.1603 arrow=0.0110 lr=5.00e-03 elapsed=2.7m
+[312.3s] [ram] after checkpoint 58000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[353.2s] [ram] step 58050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[353.2s] [train] 58050/90000 loss=0.1513 arrow=0.0074 lr=5.00e-03 elapsed=3.4m
+[394.8s] [ram] step 58100: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[394.8s] [train] 58100/90000 loss=0.1375 arrow=0.0064 lr=5.00e-03 elapsed=4.1m
+[435.9s] [ram] step 58150: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[435.9s] [train] 58150/90000 loss=0.1346 arrow=0.0049 lr=5.00e-03 elapsed=4.7m
+[476.9s] [ram] step 58200: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[476.9s] [train] 58200/90000 loss=0.1276 arrow=0.0043 lr=5.00e-03 elapsed=5.4m
+[519.6s] [ram] step 58250: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[519.6s] [train] 58250/90000 loss=0.1335 arrow=0.0053 lr=5.00e-03 elapsed=6.1m
+[561.6s] [ram] step 58300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[561.6s] [train] 58300/90000 loss=0.1205 arrow=0.0038 lr=5.00e-03 elapsed=6.8m
+[602.9s] [ram] step 58350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[602.9s] [train] 58350/90000 loss=0.1265 arrow=0.0046 lr=5.00e-03 elapsed=7.5m
+[644.3s] [ram] step 58400: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[644.3s] [train] 58400/90000 loss=0.1199 arrow=0.0053 lr=5.00e-03 elapsed=8.2m
+[685.6s] [ram] step 58450: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[685.6s] [train] 58450/90000 loss=0.1270 arrow=0.0041 lr=5.00e-03 elapsed=8.9m
+[726.8s] [ram] step 58500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[726.8s] [train] 58500/90000 loss=0.1181 arrow=0.0050 lr=5.00e-03 elapsed=9.6m
+[767.9s] [ram] step 58550: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[767.9s] [train] 58550/90000 loss=0.1110 arrow=0.0039 lr=5.00e-03 elapsed=10.3m
+[808.6s] [ram] step 58600: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[808.6s] [train] 58600/90000 loss=0.1207 arrow=0.0052 lr=5.00e-03 elapsed=11.0m
+[849.9s] [ram] step 58650: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[849.9s] [train] 58650/90000 loss=0.1146 arrow=0.0039 lr=5.00e-03 elapsed=11.6m
+[891.0s] [ram] step 58700: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[891.0s] [train] 58700/90000 loss=0.1243 arrow=0.0042 lr=5.00e-03 elapsed=12.3m
+[932.5s] [ram] step 58750: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[932.5s] [train] 58750/90000 loss=0.1315 arrow=0.0051 lr=5.00e-03 elapsed=13.0m
+[973.8s] [ram] step 58800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[973.8s] [train] 58800/90000 loss=0.1332 arrow=0.0052 lr=5.00e-03 elapsed=13.7m
+[1014.7s] [ram] step 58850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1014.7s] [train] 58850/90000 loss=0.1132 arrow=0.0048 lr=5.00e-03 elapsed=14.4m
+[1055.8s] [ram] step 58900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1055.8s] [train] 58900/90000 loss=0.1104 arrow=0.0050 lr=5.00e-03 elapsed=15.1m
+[1097.0s] [ram] step 58950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1097.0s] [train] 58950/90000 loss=0.1243 arrow=0.0064 lr=5.00e-03 elapsed=15.8m
+[1138.4s] [ram] step 59000: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1138.4s] [train] 59000/90000 loss=0.1241 arrow=0.0052 lr=5.00e-03 elapsed=16.5m
+[1139.6s] [ram] after checkpoint 59000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1180.8s] [ram] step 59050: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1180.8s] [train] 59050/90000 loss=0.1352 arrow=0.0051 lr=5.00e-03 elapsed=17.2m
+[1221.8s] [ram] step 59100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1221.8s] [train] 59100/90000 loss=0.1194 arrow=0.0040 lr=5.00e-03 elapsed=17.8m
+[1262.9s] [ram] step 59150: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1262.9s] [train] 59150/90000 loss=0.1198 arrow=0.0038 lr=5.00e-03 elapsed=18.5m
+[1304.0s] [ram] step 59200: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1304.0s] [train] 59200/90000 loss=0.1187 arrow=0.0050 lr=5.00e-03 elapsed=19.2m
+[1345.6s] [ram] step 59250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1345.6s] [train] 59250/90000 loss=0.1273 arrow=0.0041 lr=5.00e-03 elapsed=19.9m
+[1387.6s] [ram] step 59300: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1387.6s] [train] 59300/90000 loss=0.1212 arrow=0.0062 lr=5.00e-03 elapsed=20.6m
+[1428.7s] [ram] step 59350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1428.7s] [train] 59350/90000 loss=0.1268 arrow=0.0115 lr=5.00e-03 elapsed=21.3m
+[1469.8s] [ram] step 59400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1469.8s] [train] 59400/90000 loss=0.1216 arrow=0.0047 lr=5.00e-03 elapsed=22.0m
+[1511.1s] [ram] step 59450: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1511.1s] [train] 59450/90000 loss=0.1141 arrow=0.0051 lr=5.00e-03 elapsed=22.7m
+[1552.6s] [ram] step 59500: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1552.6s] [train] 59500/90000 loss=0.1185 arrow=0.0040 lr=5.00e-03 elapsed=23.4m
+[1593.5s] [ram] step 59550: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1593.5s] [train] 59550/90000 loss=0.1106 arrow=0.0055 lr=5.00e-03 elapsed=24.0m
+[1634.5s] [ram] step 59600: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1634.5s] [train] 59600/90000 loss=0.1063 arrow=0.0039 lr=5.00e-03 elapsed=24.7m
+[1676.3s] [ram] step 59650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1676.3s] [train] 59650/90000 loss=0.1287 arrow=0.0049 lr=5.00e-03 elapsed=25.4m
+[1717.5s] [ram] step 59700: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1717.5s] [train] 59700/90000 loss=0.1153 arrow=0.0040 lr=5.00e-03 elapsed=26.1m
+[1758.5s] [ram] step 59750: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1758.5s] [train] 59750/90000 loss=0.1171 arrow=0.0055 lr=5.00e-03 elapsed=26.8m
+[1799.9s] [ram] step 59800: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1799.9s] [train] 59800/90000 loss=0.1110 arrow=0.0040 lr=5.00e-03 elapsed=27.5m
+[1841.2s] [ram] step 59850: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1841.2s] [train] 59850/90000 loss=0.1131 arrow=0.0038 lr=5.00e-03 elapsed=28.2m
+[1882.6s] [ram] step 59900: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1882.6s] [train] 59900/90000 loss=0.1191 arrow=0.0066 lr=5.00e-03 elapsed=28.9m
+[1923.7s] [ram] step 59950: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[1923.7s] [train] 59950/90000 loss=0.1199 arrow=0.0055 lr=5.00e-03 elapsed=29.5m
+[1965.7s] [ram] step 60000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[1965.7s] [train] 60000/90000 loss=0.1124 arrow=0.0046 lr=5.00e-04 elapsed=30.2m
+[1966.9s] [ram] after checkpoint 60000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2008.5s] [ram] step 60050: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2008.5s] [train] 60050/90000 loss=0.1128 arrow=0.0045 lr=5.00e-04 elapsed=31.0m
+[2049.9s] [ram] step 60100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2049.9s] [train] 60100/90000 loss=0.1036 arrow=0.0036 lr=5.00e-04 elapsed=31.6m
+[2091.1s] [ram] step 60150: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2091.1s] [train] 60150/90000 loss=0.0924 arrow=0.0032 lr=5.00e-04 elapsed=32.3m
+[2132.7s] [ram] step 60200: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2132.7s] [train] 60200/90000 loss=0.0891 arrow=0.0032 lr=5.00e-04 elapsed=33.0m
+[2174.7s] [ram] step 60250: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2174.7s] [train] 60250/90000 loss=0.0996 arrow=0.0037 lr=5.00e-04 elapsed=33.7m
+[2215.9s] [ram] step 60300: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2215.9s] [train] 60300/90000 loss=0.0896 arrow=0.0030 lr=5.00e-04 elapsed=34.4m
+[2256.9s] [ram] step 60350: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2256.9s] [train] 60350/90000 loss=0.0957 arrow=0.0031 lr=5.00e-04 elapsed=35.1m
+[2298.2s] [ram] step 60400: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2298.2s] [train] 60400/90000 loss=0.0966 arrow=0.0046 lr=5.00e-04 elapsed=35.8m
+[2339.7s] [ram] step 60450: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2339.7s] [train] 60450/90000 loss=0.0969 arrow=0.0035 lr=5.00e-04 elapsed=36.5m
+[2381.5s] [ram] step 60500: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2381.5s] [train] 60500/90000 loss=0.0925 arrow=0.0029 lr=5.00e-04 elapsed=37.2m
+[2422.9s] [ram] step 60550: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2422.9s] [train] 60550/90000 loss=0.0935 arrow=0.0032 lr=5.00e-04 elapsed=37.9m
+[2464.3s] [ram] step 60600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2464.3s] [train] 60600/90000 loss=0.0921 arrow=0.0037 lr=5.00e-04 elapsed=38.6m
+[2505.6s] [ram] step 60650: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2505.6s] [train] 60650/90000 loss=0.0911 arrow=0.0045 lr=5.00e-04 elapsed=39.2m
+[2546.9s] [ram] step 60700: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2546.9s] [train] 60700/90000 loss=0.0927 arrow=0.0031 lr=5.00e-04 elapsed=39.9m
+[2588.5s] [ram] step 60750: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2588.5s] [train] 60750/90000 loss=0.0969 arrow=0.0046 lr=5.00e-04 elapsed=40.6m
+[2629.8s] [ram] step 60800: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2629.8s] [train] 60800/90000 loss=0.0924 arrow=0.0030 lr=5.00e-04 elapsed=41.3m
+[2671.0s] [ram] step 60850: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2671.0s] [train] 60850/90000 loss=0.0919 arrow=0.0032 lr=5.00e-04 elapsed=42.0m
+[2712.4s] [ram] step 60900: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2712.4s] [train] 60900/90000 loss=0.1035 arrow=0.0078 lr=5.00e-04 elapsed=42.7m
+[2754.1s] [ram] step 60950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2754.1s] [train] 60950/90000 loss=0.0893 arrow=0.0028 lr=5.00e-04 elapsed=43.4m
+[2795.8s] [ram] step 61000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2795.8s] [train] 61000/90000 loss=0.0875 arrow=0.0041 lr=5.00e-04 elapsed=44.1m
+[2797.0s] [ram] after checkpoint 61000: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2838.4s] [ram] step 61050: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[2838.4s] [train] 61050/90000 loss=0.0856 arrow=0.0031 lr=5.00e-04 elapsed=44.8m
+[2879.6s] [ram] step 61100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2879.6s] [train] 61100/90000 loss=0.0900 arrow=0.0040 lr=5.00e-04 elapsed=45.5m
+[2920.8s] [ram] step 61150: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2920.8s] [train] 61150/90000 loss=0.0875 arrow=0.0025 lr=5.00e-04 elapsed=46.2m
+[2962.1s] [ram] step 61200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[2962.1s] [train] 61200/90000 loss=0.0879 arrow=0.0035 lr=5.00e-04 elapsed=46.9m
+[3003.6s] [ram] step 61250: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3003.6s] [train] 61250/90000 loss=0.0912 arrow=0.0031 lr=5.00e-04 elapsed=47.5m
+[3044.4s] [ram] step 61300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3044.4s] [train] 61300/90000 loss=0.0850 arrow=0.0028 lr=5.00e-04 elapsed=48.2m
+[3085.6s] [ram] step 61350: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3085.6s] [train] 61350/90000 loss=0.0880 arrow=0.0045 lr=5.00e-04 elapsed=48.9m
+[3127.0s] [ram] step 61400: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3127.0s] [train] 61400/90000 loss=0.0887 arrow=0.0026 lr=5.00e-04 elapsed=49.6m
+[3167.8s] [ram] step 61450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3167.8s] [train] 61450/90000 loss=0.0906 arrow=0.0032 lr=5.00e-04 elapsed=50.3m
+[3209.0s] [ram] step 61500: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3209.0s] [train] 61500/90000 loss=0.0875 arrow=0.0036 lr=5.00e-04 elapsed=51.0m
+[3250.1s] [ram] step 61550: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3250.1s] [train] 61550/90000 loss=0.0913 arrow=0.0033 lr=5.00e-04 elapsed=51.7m
+[3290.9s] [ram] step 61600: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3290.9s] [train] 61600/90000 loss=0.0873 arrow=0.0030 lr=5.00e-04 elapsed=52.3m
+[3331.6s] [ram] step 61650: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3331.6s] [train] 61650/90000 loss=0.0904 arrow=0.0032 lr=5.00e-04 elapsed=53.0m
+[3373.0s] [ram] step 61700: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3373.0s] [train] 61700/90000 loss=0.0936 arrow=0.0026 lr=5.00e-04 elapsed=53.7m
+[3414.4s] [ram] step 61750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3414.4s] [train] 61750/90000 loss=0.0847 arrow=0.0032 lr=5.00e-04 elapsed=54.4m
+[3455.2s] [ram] step 61800: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3455.2s] [train] 61800/90000 loss=0.0916 arrow=0.0030 lr=5.00e-04 elapsed=55.1m
+[3495.9s] [ram] step 61850: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3495.9s] [train] 61850/90000 loss=0.0876 arrow=0.0035 lr=5.00e-04 elapsed=55.7m
+[3536.9s] [ram] step 61900: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3536.9s] [train] 61900/90000 loss=0.0908 arrow=0.0028 lr=5.00e-04 elapsed=56.4m
+[3578.1s] [ram] step 61950: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3578.1s] [train] 61950/90000 loss=0.0908 arrow=0.0042 lr=5.00e-04 elapsed=57.1m
+[3619.2s] [ram] step 62000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3619.2s] [train] 62000/90000 loss=0.0861 arrow=0.0028 lr=5.00e-04 elapsed=57.8m
+[3620.3s] [ram] after checkpoint 62000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3661.8s] [ram] step 62050: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3661.8s] [train] 62050/90000 loss=0.0919 arrow=0.0032 lr=5.00e-04 elapsed=58.5m
+[3703.2s] [ram] step 62100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3703.2s] [train] 62100/90000 loss=0.0834 arrow=0.0026 lr=5.00e-04 elapsed=59.2m
+[3744.3s] [ram] step 62150: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3744.3s] [train] 62150/90000 loss=0.0839 arrow=0.0030 lr=5.00e-04 elapsed=59.9m
+[3785.3s] [ram] step 62200: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3785.3s] [train] 62200/90000 loss=0.0948 arrow=0.0038 lr=5.00e-04 elapsed=60.6m
+[3826.4s] [ram] step 62250: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3826.4s] [train] 62250/90000 loss=0.0843 arrow=0.0031 lr=5.00e-04 elapsed=61.3m
+[3867.7s] [ram] step 62300: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3867.7s] [train] 62300/90000 loss=0.0943 arrow=0.0034 lr=5.00e-04 elapsed=61.9m
+[3908.5s] [ram] step 62350: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3908.5s] [train] 62350/90000 loss=0.0861 arrow=0.0029 lr=5.00e-04 elapsed=62.6m
+[3949.7s] [ram] step 62400: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[3949.7s] [train] 62400/90000 loss=0.0883 arrow=0.0048 lr=5.00e-04 elapsed=63.3m
+[3991.7s] [ram] step 62450: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[3991.7s] [train] 62450/90000 loss=0.0949 arrow=0.0035 lr=5.00e-04 elapsed=64.0m
+[4034.0s] [ram] step 62500: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4034.0s] [train] 62500/90000 loss=0.0888 arrow=0.0033 lr=5.00e-04 elapsed=64.7m
+[4075.3s] [ram] step 62550: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4075.3s] [train] 62550/90000 loss=0.0826 arrow=0.0031 lr=5.00e-04 elapsed=65.4m
+[4117.0s] [ram] step 62600: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4117.0s] [train] 62600/90000 loss=0.0901 arrow=0.0055 lr=5.00e-04 elapsed=66.1m
+[4158.3s] [ram] step 62650: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4158.3s] [train] 62650/90000 loss=0.0912 arrow=0.0037 lr=5.00e-04 elapsed=66.8m
+[4200.1s] [ram] step 62700: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4200.1s] [train] 62700/90000 loss=0.0925 arrow=0.0029 lr=5.00e-04 elapsed=67.5m
+[4241.5s] [ram] step 62750: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4241.5s] [train] 62750/90000 loss=0.0813 arrow=0.0030 lr=5.00e-04 elapsed=68.2m
+[4283.1s] [ram] step 62800: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4283.1s] [train] 62800/90000 loss=0.0921 arrow=0.0061 lr=5.00e-04 elapsed=68.9m
+[4324.5s] [ram] step 62850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4324.5s] [train] 62850/90000 loss=0.0951 arrow=0.0030 lr=5.00e-04 elapsed=69.6m
+[4365.8s] [ram] step 62900: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4365.8s] [train] 62900/90000 loss=0.0876 arrow=0.0025 lr=5.00e-04 elapsed=70.2m
+[4406.7s] [ram] step 62950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4406.7s] [train] 62950/90000 loss=0.0827 arrow=0.0025 lr=5.00e-04 elapsed=70.9m
+[4448.1s] [ram] step 63000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4448.1s] [train] 63000/90000 loss=0.0881 arrow=0.0032 lr=5.00e-04 elapsed=71.6m
+[4449.3s] [ram] after checkpoint 63000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4490.8s] [ram] step 63050: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4490.8s] [train] 63050/90000 loss=0.0858 arrow=0.0026 lr=5.00e-04 elapsed=72.3m
+[4532.2s] [ram] step 63100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4532.2s] [train] 63100/90000 loss=0.0891 arrow=0.0037 lr=5.00e-04 elapsed=73.0m
+[4573.3s] [ram] step 63150: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4573.3s] [train] 63150/90000 loss=0.0861 arrow=0.0044 lr=5.00e-04 elapsed=73.7m
+[4614.8s] [ram] step 63200: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4614.8s] [train] 63200/90000 loss=0.0935 arrow=0.0034 lr=5.00e-04 elapsed=74.4m
+[4656.0s] [ram] step 63250: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4656.0s] [train] 63250/90000 loss=0.0872 arrow=0.0040 lr=5.00e-04 elapsed=75.1m
+[4697.2s] [ram] step 63300: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4697.2s] [train] 63300/90000 loss=0.0899 arrow=0.0032 lr=5.00e-04 elapsed=75.8m
+[4738.4s] [ram] step 63350: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4738.4s] [train] 63350/90000 loss=0.0860 arrow=0.0037 lr=5.00e-04 elapsed=76.5m
+[4779.9s] [ram] step 63400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4779.9s] [train] 63400/90000 loss=0.0818 arrow=0.0029 lr=5.00e-04 elapsed=77.1m
+[4820.8s] [ram] step 63450: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4820.8s] [train] 63450/90000 loss=0.0848 arrow=0.0026 lr=5.00e-04 elapsed=77.8m
+[4861.9s] [ram] step 63500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4861.9s] [train] 63500/90000 loss=0.0893 arrow=0.0060 lr=5.00e-04 elapsed=78.5m
+[4903.5s] [ram] step 63550: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4903.5s] [train] 63550/90000 loss=0.0870 arrow=0.0030 lr=5.00e-04 elapsed=79.2m
+[4945.1s] [ram] step 63600: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[4945.1s] [train] 63600/90000 loss=0.0920 arrow=0.0033 lr=5.00e-04 elapsed=79.9m
+[4986.0s] [ram] step 63650: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[4986.0s] [train] 63650/90000 loss=0.0872 arrow=0.0048 lr=5.00e-04 elapsed=80.6m
+[5026.9s] [ram] step 63700: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5026.9s] [train] 63700/90000 loss=0.0859 arrow=0.0026 lr=5.00e-04 elapsed=81.3m
+[5068.1s] [ram] step 63750: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5068.1s] [train] 63750/90000 loss=0.0899 arrow=0.0048 lr=5.00e-04 elapsed=82.0m
+[5109.6s] [ram] step 63800: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5109.6s] [train] 63800/90000 loss=0.0895 arrow=0.0032 lr=5.00e-04 elapsed=82.6m
+[5150.5s] [ram] step 63850: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5150.5s] [train] 63850/90000 loss=0.0816 arrow=0.0031 lr=5.00e-04 elapsed=83.3m
+[5191.4s] [ram] step 63900: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5191.4s] [train] 63900/90000 loss=0.0857 arrow=0.0042 lr=5.00e-04 elapsed=84.0m
+[5232.7s] [ram] step 63950: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5232.7s] [train] 63950/90000 loss=0.0911 arrow=0.0031 lr=5.00e-04 elapsed=84.7m
+[5274.7s] [ram] step 64000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5274.7s] [train] 64000/90000 loss=0.0885 arrow=0.0033 lr=5.00e-04 elapsed=85.4m
+[5275.9s] [ram] after checkpoint 64000: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5316.9s] [ram] step 64050: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5316.9s] [train] 64050/90000 loss=0.0878 arrow=0.0034 lr=5.00e-04 elapsed=86.1m
+[5358.0s] [ram] step 64100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5358.0s] [train] 64100/90000 loss=0.0815 arrow=0.0046 lr=5.00e-04 elapsed=86.8m
+[5399.1s] [ram] step 64150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5399.1s] [train] 64150/90000 loss=0.0807 arrow=0.0030 lr=5.00e-04 elapsed=87.5m
+[5440.3s] [ram] step 64200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5440.3s] [train] 64200/90000 loss=0.0887 arrow=0.0031 lr=5.00e-04 elapsed=88.2m
+[5481.5s] [ram] step 64250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5481.5s] [train] 64250/90000 loss=0.0902 arrow=0.0050 lr=5.00e-04 elapsed=88.8m
+[5522.4s] [ram] step 64300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5522.4s] [train] 64300/90000 loss=0.0875 arrow=0.0035 lr=5.00e-04 elapsed=89.5m
+[5564.1s] [ram] step 64350: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5564.1s] [train] 64350/90000 loss=0.0838 arrow=0.0032 lr=5.00e-04 elapsed=90.2m
+[5605.5s] [ram] step 64400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5605.5s] [train] 64400/90000 loss=0.0916 arrow=0.0030 lr=5.00e-04 elapsed=90.9m
+[5646.5s] [ram] step 64450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5646.5s] [train] 64450/90000 loss=0.0820 arrow=0.0027 lr=5.00e-04 elapsed=91.6m
+[5687.6s] [ram] step 64500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5687.6s] [train] 64500/90000 loss=0.0799 arrow=0.0031 lr=5.00e-04 elapsed=92.3m
+[5728.6s] [ram] step 64550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5728.6s] [train] 64550/90000 loss=0.0820 arrow=0.0048 lr=5.00e-04 elapsed=93.0m
+[5769.8s] [ram] step 64600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5769.8s] [train] 64600/90000 loss=0.0826 arrow=0.0032 lr=5.00e-04 elapsed=93.6m
+[5810.9s] [ram] step 64650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5810.9s] [train] 64650/90000 loss=0.0871 arrow=0.0041 lr=5.00e-04 elapsed=94.3m
+[5852.4s] [ram] step 64700: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5852.4s] [train] 64700/90000 loss=0.0940 arrow=0.0036 lr=5.00e-04 elapsed=95.0m
+[5893.7s] [ram] step 64750: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[5893.7s] [train] 64750/90000 loss=0.0868 arrow=0.0038 lr=5.00e-04 elapsed=95.7m
+[5934.9s] [ram] step 64800: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5934.9s] [train] 64800/90000 loss=0.0847 arrow=0.0028 lr=5.00e-04 elapsed=96.4m
+[5975.7s] [ram] step 64850: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[5975.7s] [train] 64850/90000 loss=0.0849 arrow=0.0031 lr=5.00e-04 elapsed=97.1m
+[6016.5s] [ram] step 64900: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6016.5s] [train] 64900/90000 loss=0.0797 arrow=0.0032 lr=5.00e-04 elapsed=97.8m
+[6057.6s] [ram] step 64950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6057.6s] [train] 64950/90000 loss=0.0877 arrow=0.0041 lr=5.00e-04 elapsed=98.4m
+[6098.6s] [ram] step 65000: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6098.6s] [train] 65000/90000 loss=0.0813 arrow=0.0039 lr=5.00e-04 elapsed=99.1m
+[6099.8s] [ram] after checkpoint 65000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6140.8s] [ram] step 65050: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6140.8s] [train] 65050/90000 loss=0.0850 arrow=0.0027 lr=5.00e-04 elapsed=99.8m
+[6181.8s] [ram] step 65100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6181.8s] [train] 65100/90000 loss=0.0882 arrow=0.0033 lr=5.00e-04 elapsed=100.5m
+[6222.9s] [ram] step 65150: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6222.9s] [train] 65150/90000 loss=0.0840 arrow=0.0038 lr=5.00e-04 elapsed=101.2m
+[6264.0s] [ram] step 65200: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6264.0s] [train] 65200/90000 loss=0.0832 arrow=0.0027 lr=5.00e-04 elapsed=101.9m
+[6305.5s] [ram] step 65250: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6305.5s] [train] 65250/90000 loss=0.0855 arrow=0.0030 lr=5.00e-04 elapsed=102.6m
+[6347.0s] [ram] step 65300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6347.0s] [train] 65300/90000 loss=0.0827 arrow=0.0034 lr=5.00e-04 elapsed=103.3m
+[6388.6s] [ram] step 65350: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6388.6s] [train] 65350/90000 loss=0.0958 arrow=0.0039 lr=5.00e-04 elapsed=104.0m
+[6430.7s] [ram] step 65400: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[6430.7s] [train] 65400/90000 loss=0.0869 arrow=0.0038 lr=5.00e-04 elapsed=104.7m
+[6472.8s] [ram] step 65450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6472.8s] [train] 65450/90000 loss=0.0835 arrow=0.0033 lr=5.00e-04 elapsed=105.4m
+[6514.6s] [ram] step 65500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6514.6s] [train] 65500/90000 loss=0.0890 arrow=0.0032 lr=5.00e-04 elapsed=106.1m
+[6555.9s] [ram] step 65550: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6555.9s] [train] 65550/90000 loss=0.0800 arrow=0.0034 lr=5.00e-04 elapsed=106.7m
+[6597.2s] [ram] step 65600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6597.2s] [train] 65600/90000 loss=0.0887 arrow=0.0049 lr=5.00e-04 elapsed=107.4m
+[6638.3s] [ram] step 65650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6638.3s] [train] 65650/90000 loss=0.0810 arrow=0.0029 lr=5.00e-04 elapsed=108.1m
+[6679.5s] [ram] step 65700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6679.5s] [train] 65700/90000 loss=0.0777 arrow=0.0034 lr=5.00e-04 elapsed=108.8m
+[6721.4s] [ram] step 65750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6721.4s] [train] 65750/90000 loss=0.0848 arrow=0.0030 lr=5.00e-04 elapsed=109.5m
+[6763.0s] [ram] step 65800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6763.0s] [train] 65800/90000 loss=0.0864 arrow=0.0029 lr=5.00e-04 elapsed=110.2m
+[6804.5s] [ram] step 65850: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6804.5s] [train] 65850/90000 loss=0.0786 arrow=0.0025 lr=5.00e-04 elapsed=110.9m
+[6846.1s] [ram] step 65900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6846.1s] [train] 65900/90000 loss=0.0885 arrow=0.0035 lr=5.00e-04 elapsed=111.6m
+[6887.2s] [ram] step 65950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6887.2s] [train] 65950/90000 loss=0.0888 arrow=0.0030 lr=5.00e-04 elapsed=112.3m
+[6928.7s] [ram] step 66000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6928.7s] [train] 66000/90000 loss=0.0817 arrow=0.0038 lr=5.00e-04 elapsed=113.0m
+[6929.9s] [ram] after checkpoint 66000: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6971.4s] [ram] step 66050: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[6971.4s] [train] 66050/90000 loss=0.0864 arrow=0.0030 lr=5.00e-04 elapsed=113.7m
+[7012.7s] [ram] step 66100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7012.7s] [train] 66100/90000 loss=0.0880 arrow=0.0026 lr=5.00e-04 elapsed=114.4m
+[7054.5s] [ram] step 66150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7054.5s] [train] 66150/90000 loss=0.0854 arrow=0.0034 lr=5.00e-04 elapsed=115.1m
+[7096.1s] [ram] step 66200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7096.1s] [train] 66200/90000 loss=0.0809 arrow=0.0032 lr=5.00e-04 elapsed=115.8m
+[7137.7s] [ram] step 66250: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7137.7s] [train] 66250/90000 loss=0.0875 arrow=0.0035 lr=5.00e-04 elapsed=116.4m
+[7178.8s] [ram] step 66300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7178.8s] [train] 66300/90000 loss=0.0875 arrow=0.0030 lr=5.00e-04 elapsed=117.1m
+[7220.2s] [ram] step 66350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7220.2s] [train] 66350/90000 loss=0.0796 arrow=0.0032 lr=5.00e-04 elapsed=117.8m
+[7261.4s] [ram] step 66400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7261.4s] [train] 66400/90000 loss=0.0826 arrow=0.0028 lr=5.00e-04 elapsed=118.5m
+[7302.8s] [ram] step 66450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7302.8s] [train] 66450/90000 loss=0.0879 arrow=0.0045 lr=5.00e-04 elapsed=119.2m
+[7344.5s] [ram] step 66500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7344.5s] [train] 66500/90000 loss=0.0866 arrow=0.0031 lr=5.00e-04 elapsed=119.9m
+[7386.1s] [ram] step 66550: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7386.1s] [train] 66550/90000 loss=0.0842 arrow=0.0030 lr=5.00e-04 elapsed=120.6m
+[7427.6s] [ram] step 66600: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7427.6s] [train] 66600/90000 loss=0.0862 arrow=0.0028 lr=5.00e-04 elapsed=121.3m
+[7469.3s] [ram] step 66650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7469.3s] [train] 66650/90000 loss=0.0857 arrow=0.0030 lr=5.00e-04 elapsed=122.0m
+[7511.2s] [ram] step 66700: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[7511.2s] [train] 66700/90000 loss=0.0922 arrow=0.0047 lr=5.00e-04 elapsed=122.7m
+[7553.4s] [ram] step 66750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7553.4s] [train] 66750/90000 loss=0.0797 arrow=0.0028 lr=5.00e-04 elapsed=123.4m
+[7595.4s] [ram] step 66800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7595.4s] [train] 66800/90000 loss=0.0881 arrow=0.0032 lr=5.00e-04 elapsed=124.1m
+[7637.0s] [ram] step 66850: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7637.0s] [train] 66850/90000 loss=0.0787 arrow=0.0029 lr=5.00e-04 elapsed=124.8m
+[7678.4s] [ram] step 66900: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7678.4s] [train] 66900/90000 loss=0.0825 arrow=0.0027 lr=5.00e-04 elapsed=125.5m
+[7720.0s] [ram] step 66950: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[7720.0s] [train] 66950/90000 loss=0.0807 arrow=0.0028 lr=5.00e-04 elapsed=126.1m
+[7762.0s] [ram] step 67000: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[7762.0s] [train] 67000/90000 loss=0.0836 arrow=0.0031 lr=5.00e-04 elapsed=126.8m
+[7763.3s] [ram] after checkpoint 67000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[7805.0s] [ram] step 67050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7805.0s] [train] 67050/90000 loss=0.0836 arrow=0.0026 lr=5.00e-04 elapsed=127.6m
+[7846.6s] [ram] step 67100: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7846.6s] [train] 67100/90000 loss=0.0830 arrow=0.0027 lr=5.00e-04 elapsed=128.3m
+[7888.1s] [ram] step 67150: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7888.1s] [train] 67150/90000 loss=0.0846 arrow=0.0030 lr=5.00e-04 elapsed=129.0m
+[7930.0s] [ram] step 67200: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[7930.0s] [train] 67200/90000 loss=0.0866 arrow=0.0032 lr=5.00e-04 elapsed=129.6m
+[7971.6s] [ram] step 67250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[7971.6s] [train] 67250/90000 loss=0.0810 arrow=0.0029 lr=5.00e-04 elapsed=130.3m
+[8013.4s] [ram] step 67300: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8013.4s] [train] 67300/90000 loss=0.0877 arrow=0.0038 lr=5.00e-04 elapsed=131.0m
+[8054.9s] [ram] step 67350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8054.9s] [train] 67350/90000 loss=0.0838 arrow=0.0026 lr=5.00e-04 elapsed=131.7m
+[8096.5s] [ram] step 67400: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8096.5s] [train] 67400/90000 loss=0.0923 arrow=0.0032 lr=5.00e-04 elapsed=132.4m
+[8138.0s] [ram] step 67450: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8138.0s] [train] 67450/90000 loss=0.0814 arrow=0.0032 lr=5.00e-04 elapsed=133.1m
+[8179.5s] [ram] step 67500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8179.5s] [train] 67500/90000 loss=0.0848 arrow=0.0040 lr=5.00e-04 elapsed=133.8m
+[8221.2s] [ram] step 67550: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8221.2s] [train] 67550/90000 loss=0.0912 arrow=0.0041 lr=5.00e-04 elapsed=134.5m
+[8262.6s] [ram] step 67600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8262.6s] [train] 67600/90000 loss=0.0874 arrow=0.0027 lr=5.00e-04 elapsed=135.2m
+[8303.9s] [ram] step 67650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8303.9s] [train] 67650/90000 loss=0.0857 arrow=0.0032 lr=5.00e-04 elapsed=135.9m
+[8345.7s] [ram] step 67700: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8345.7s] [train] 67700/90000 loss=0.0859 arrow=0.0027 lr=5.00e-04 elapsed=136.6m
+[8387.6s] [ram] step 67750: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8387.6s] [train] 67750/90000 loss=0.0865 arrow=0.0044 lr=5.00e-04 elapsed=137.3m
+[8428.6s] [ram] step 67800: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8428.6s] [train] 67800/90000 loss=0.0765 arrow=0.0024 lr=5.00e-04 elapsed=138.0m
+[8469.8s] [ram] step 67850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8469.8s] [train] 67850/90000 loss=0.0886 arrow=0.0046 lr=5.00e-04 elapsed=138.6m
+[8511.4s] [ram] step 67900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8511.4s] [train] 67900/90000 loss=0.0922 arrow=0.0028 lr=5.00e-04 elapsed=139.3m
+[8553.1s] [ram] step 67950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8553.1s] [train] 67950/90000 loss=0.0838 arrow=0.0029 lr=5.00e-04 elapsed=140.0m
+[8594.7s] [ram] step 68000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8594.7s] [train] 68000/90000 loss=0.0861 arrow=0.0048 lr=5.00e-04 elapsed=140.7m
+[8596.0s] [ram] after checkpoint 68000: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8637.6s] [ram] step 68050: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8637.6s] [train] 68050/90000 loss=0.0900 arrow=0.0037 lr=5.00e-04 elapsed=141.4m
+[8678.9s] [ram] step 68100: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8678.9s] [train] 68100/90000 loss=0.0745 arrow=0.0027 lr=5.00e-04 elapsed=142.1m
+[8720.3s] [ram] step 68150: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8720.3s] [train] 68150/90000 loss=0.0825 arrow=0.0025 lr=5.00e-04 elapsed=142.8m
+[8761.6s] [ram] step 68200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8761.6s] [train] 68200/90000 loss=0.0923 arrow=0.0038 lr=5.00e-04 elapsed=143.5m
+[8802.9s] [ram] step 68250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8802.9s] [train] 68250/90000 loss=0.0841 arrow=0.0032 lr=5.00e-04 elapsed=144.2m
+[8844.4s] [ram] step 68300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8844.4s] [train] 68300/90000 loss=0.0825 arrow=0.0028 lr=5.00e-04 elapsed=144.9m
+[8885.7s] [ram] step 68350: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8885.7s] [train] 68350/90000 loss=0.0838 arrow=0.0030 lr=5.00e-04 elapsed=145.6m
+[8926.9s] [ram] step 68400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[8926.9s] [train] 68400/90000 loss=0.0769 arrow=0.0032 lr=5.00e-04 elapsed=146.3m
+[8968.9s] [ram] step 68450: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[8968.9s] [train] 68450/90000 loss=0.0898 arrow=0.0032 lr=5.00e-04 elapsed=147.0m
+[9010.7s] [ram] step 68500: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9010.7s] [train] 68500/90000 loss=0.0871 arrow=0.0029 lr=5.00e-04 elapsed=147.7m
+[9052.3s] [ram] step 68550: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9052.3s] [train] 68550/90000 loss=0.0860 arrow=0.0027 lr=5.00e-04 elapsed=148.4m
+[9093.8s] [ram] step 68600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9093.8s] [train] 68600/90000 loss=0.0912 arrow=0.0029 lr=5.00e-04 elapsed=149.0m
+[9135.5s] [ram] step 68650: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9135.5s] [train] 68650/90000 loss=0.0814 arrow=0.0026 lr=5.00e-04 elapsed=149.7m
+[9177.4s] [ram] step 68700: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9177.4s] [train] 68700/90000 loss=0.0843 arrow=0.0028 lr=5.00e-04 elapsed=150.4m
+[9219.3s] [ram] step 68750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9219.3s] [train] 68750/90000 loss=0.0850 arrow=0.0031 lr=5.00e-04 elapsed=151.1m
+[9260.9s] [ram] step 68800: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9260.9s] [train] 68800/90000 loss=0.0851 arrow=0.0027 lr=5.00e-04 elapsed=151.8m
+[9302.2s] [ram] step 68850: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9302.2s] [train] 68850/90000 loss=0.0832 arrow=0.0026 lr=5.00e-04 elapsed=152.5m
+[9343.3s] [ram] step 68900: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9343.3s] [train] 68900/90000 loss=0.0852 arrow=0.0029 lr=5.00e-04 elapsed=153.2m
+[9384.5s] [ram] step 68950: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9384.5s] [train] 68950/90000 loss=0.0899 arrow=0.0027 lr=5.00e-04 elapsed=153.9m
+[9426.4s] [ram] step 69000: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9426.4s] [train] 69000/90000 loss=0.0942 arrow=0.0053 lr=5.00e-04 elapsed=154.6m
+[9427.6s] [ram] after checkpoint 69000: available=27.84 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9470.3s] [ram] step 69050: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9470.3s] [train] 69050/90000 loss=0.0861 arrow=0.0028 lr=5.00e-04 elapsed=155.3m
+[9512.3s] [ram] step 69100: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9512.3s] [train] 69100/90000 loss=0.0871 arrow=0.0034 lr=5.00e-04 elapsed=156.0m
+[9554.3s] [ram] step 69150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9554.3s] [train] 69150/90000 loss=0.0846 arrow=0.0031 lr=5.00e-04 elapsed=156.7m
+[9596.0s] [ram] step 69200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9596.0s] [train] 69200/90000 loss=0.0850 arrow=0.0032 lr=5.00e-04 elapsed=157.4m
+[9638.2s] [ram] step 69250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9638.2s] [train] 69250/90000 loss=0.0921 arrow=0.0027 lr=5.00e-04 elapsed=158.1m
+[9680.1s] [ram] step 69300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9680.1s] [train] 69300/90000 loss=0.0889 arrow=0.0043 lr=5.00e-04 elapsed=158.8m
+[9721.8s] [ram] step 69350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9721.8s] [train] 69350/90000 loss=0.0830 arrow=0.0040 lr=5.00e-04 elapsed=159.5m
+[9763.8s] [ram] step 69400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9763.8s] [train] 69400/90000 loss=0.0824 arrow=0.0029 lr=5.00e-04 elapsed=160.2m
+[9807.1s] [ram] step 69450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9807.1s] [train] 69450/90000 loss=0.0900 arrow=0.0028 lr=5.00e-04 elapsed=160.9m
+[9848.9s] [ram] step 69500: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9848.9s] [train] 69500/90000 loss=0.0801 arrow=0.0027 lr=5.00e-04 elapsed=161.6m
+[9890.7s] [ram] step 69550: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9890.7s] [train] 69550/90000 loss=0.0808 arrow=0.0025 lr=5.00e-04 elapsed=162.3m
+[9932.7s] [ram] step 69600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[9932.7s] [train] 69600/90000 loss=0.0890 arrow=0.0029 lr=5.00e-04 elapsed=163.0m
+[9974.9s] [ram] step 69650: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[9974.9s] [train] 69650/90000 loss=0.0867 arrow=0.0062 lr=5.00e-04 elapsed=163.7m
+[10016.4s] [ram] step 69700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10016.4s] [train] 69700/90000 loss=0.0756 arrow=0.0025 lr=5.00e-04 elapsed=164.4m
+[10058.4s] [ram] step 69750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10058.4s] [train] 69750/90000 loss=0.0828 arrow=0.0032 lr=5.00e-04 elapsed=165.1m
+[10100.6s] [ram] step 69800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10100.6s] [train] 69800/90000 loss=0.0889 arrow=0.0044 lr=5.00e-04 elapsed=165.8m
+[10142.2s] [ram] step 69850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10142.2s] [train] 69850/90000 loss=0.0782 arrow=0.0034 lr=5.00e-04 elapsed=166.5m
+[10183.5s] [ram] step 69900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10183.5s] [train] 69900/90000 loss=0.0841 arrow=0.0037 lr=5.00e-04 elapsed=167.2m
+[10225.4s] [ram] step 69950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10225.4s] [train] 69950/90000 loss=0.0869 arrow=0.0040 lr=5.00e-04 elapsed=167.9m
+[10267.5s] [ram] step 70000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10267.5s] [train] 70000/90000 loss=0.0848 arrow=0.0037 lr=5.00e-04 elapsed=168.6m
+[10268.8s] [ram] after checkpoint 70000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[10310.6s] [ram] step 70050: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10310.6s] [train] 70050/90000 loss=0.0842 arrow=0.0027 lr=5.00e-04 elapsed=169.3m
+[10352.3s] [ram] step 70100: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10352.3s] [train] 70100/90000 loss=0.0826 arrow=0.0041 lr=5.00e-04 elapsed=170.0m
+[10394.1s] [ram] step 70150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10394.1s] [train] 70150/90000 loss=0.0836 arrow=0.0036 lr=5.00e-04 elapsed=170.7m
+[10436.1s] [ram] step 70200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10436.1s] [train] 70200/90000 loss=0.0824 arrow=0.0029 lr=5.00e-04 elapsed=171.4m
+[10478.0s] [ram] step 70250: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10478.0s] [train] 70250/90000 loss=0.0830 arrow=0.0027 lr=5.00e-04 elapsed=172.1m
+[10519.9s] [ram] step 70300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10519.9s] [train] 70300/90000 loss=0.0909 arrow=0.0030 lr=5.00e-04 elapsed=172.8m
+[10561.7s] [ram] step 70350: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10561.7s] [train] 70350/90000 loss=0.0854 arrow=0.0030 lr=5.00e-04 elapsed=173.5m
+[10603.7s] [ram] step 70400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10603.7s] [train] 70400/90000 loss=0.0835 arrow=0.0027 lr=5.00e-04 elapsed=174.2m
+[10644.9s] [ram] step 70450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10644.9s] [train] 70450/90000 loss=0.0801 arrow=0.0030 lr=5.00e-04 elapsed=174.9m
+[10686.8s] [ram] step 70500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10686.8s] [train] 70500/90000 loss=0.0893 arrow=0.0064 lr=5.00e-04 elapsed=175.6m
+[10728.6s] [ram] step 70550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10728.6s] [train] 70550/90000 loss=0.0851 arrow=0.0027 lr=5.00e-04 elapsed=176.3m
+[10770.5s] [ram] step 70600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10770.5s] [train] 70600/90000 loss=0.0841 arrow=0.0034 lr=5.00e-04 elapsed=177.0m
+[10812.3s] [ram] step 70650: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10812.3s] [train] 70650/90000 loss=0.0822 arrow=0.0027 lr=5.00e-04 elapsed=177.7m
+[10854.1s] [ram] step 70700: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10854.1s] [train] 70700/90000 loss=0.0825 arrow=0.0032 lr=5.00e-04 elapsed=178.4m
+[10896.8s] [ram] step 70750: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10896.8s] [train] 70750/90000 loss=0.0893 arrow=0.0034 lr=5.00e-04 elapsed=179.1m
+[10938.5s] [ram] step 70800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10938.5s] [train] 70800/90000 loss=0.0917 arrow=0.0028 lr=5.00e-04 elapsed=179.8m
+[10980.2s] [ram] step 70850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[10980.2s] [train] 70850/90000 loss=0.0851 arrow=0.0029 lr=5.00e-04 elapsed=180.5m
+[11022.0s] [ram] step 70900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11022.0s] [train] 70900/90000 loss=0.0837 arrow=0.0030 lr=5.00e-04 elapsed=181.2m
+[11063.7s] [ram] step 70950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11063.7s] [train] 70950/90000 loss=0.0824 arrow=0.0035 lr=5.00e-04 elapsed=181.9m
+[11105.2s] [ram] step 71000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11105.2s] [train] 71000/90000 loss=0.0803 arrow=0.0044 lr=5.00e-04 elapsed=182.6m
+[11106.4s] [ram] after checkpoint 71000: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11148.2s] [ram] step 71050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11148.2s] [train] 71050/90000 loss=0.0886 arrow=0.0026 lr=5.00e-04 elapsed=183.3m
+[11189.9s] [ram] step 71100: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11189.9s] [train] 71100/90000 loss=0.0784 arrow=0.0028 lr=5.00e-04 elapsed=184.0m
+[11231.7s] [ram] step 71150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11231.7s] [train] 71150/90000 loss=0.0844 arrow=0.0030 lr=5.00e-04 elapsed=184.7m
+[11273.1s] [ram] step 71200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11273.1s] [train] 71200/90000 loss=0.0881 arrow=0.0031 lr=5.00e-04 elapsed=185.4m
+[11315.4s] [ram] step 71250: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11315.4s] [train] 71250/90000 loss=0.0807 arrow=0.0051 lr=5.00e-04 elapsed=186.1m
+[11357.1s] [ram] step 71300: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[11357.1s] [train] 71300/90000 loss=0.0853 arrow=0.0032 lr=5.00e-04 elapsed=186.8m
+[11399.0s] [ram] step 71350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11399.0s] [train] 71350/90000 loss=0.0844 arrow=0.0027 lr=5.00e-04 elapsed=187.5m
+[11440.5s] [ram] step 71400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11440.5s] [train] 71400/90000 loss=0.0821 arrow=0.0029 lr=5.00e-04 elapsed=188.2m
+[11482.5s] [ram] step 71450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11482.5s] [train] 71450/90000 loss=0.0858 arrow=0.0030 lr=5.00e-04 elapsed=188.9m
+[11524.7s] [ram] step 71500: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11524.7s] [train] 71500/90000 loss=0.0833 arrow=0.0034 lr=5.00e-04 elapsed=189.6m
+[11566.2s] [ram] step 71550: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11566.2s] [train] 71550/90000 loss=0.0898 arrow=0.0041 lr=5.00e-04 elapsed=190.3m
+[11607.8s] [ram] step 71600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11607.8s] [train] 71600/90000 loss=0.0849 arrow=0.0029 lr=5.00e-04 elapsed=190.9m
+[11649.6s] [ram] step 71650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11649.6s] [train] 71650/90000 loss=0.0828 arrow=0.0025 lr=5.00e-04 elapsed=191.6m
+[11691.4s] [ram] step 71700: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11691.4s] [train] 71700/90000 loss=0.0846 arrow=0.0040 lr=5.00e-04 elapsed=192.3m
+[11733.2s] [ram] step 71750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11733.2s] [train] 71750/90000 loss=0.0846 arrow=0.0031 lr=5.00e-04 elapsed=193.0m
+[11774.9s] [ram] step 71800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11774.9s] [train] 71800/90000 loss=0.0879 arrow=0.0030 lr=5.00e-04 elapsed=193.7m
+[11816.3s] [ram] step 71850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11816.3s] [train] 71850/90000 loss=0.0792 arrow=0.0024 lr=5.00e-04 elapsed=194.4m
+[11857.8s] [ram] step 71900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11857.8s] [train] 71900/90000 loss=0.0830 arrow=0.0030 lr=5.00e-04 elapsed=195.1m
+[11898.9s] [ram] step 71950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11898.9s] [train] 71950/90000 loss=0.0870 arrow=0.0031 lr=5.00e-04 elapsed=195.8m
+[11940.3s] [ram] step 72000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11940.3s] [train] 72000/90000 loss=0.0840 arrow=0.0029 lr=5.00e-04 elapsed=196.5m
+[11941.5s] [ram] after checkpoint 72000: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[11983.1s] [ram] step 72050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[11983.1s] [train] 72050/90000 loss=0.0884 arrow=0.0033 lr=5.00e-04 elapsed=197.2m
+[12024.7s] [ram] step 72100: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12024.7s] [train] 72100/90000 loss=0.0869 arrow=0.0030 lr=5.00e-04 elapsed=197.9m
+[12065.7s] [ram] step 72150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12065.7s] [train] 72150/90000 loss=0.0815 arrow=0.0030 lr=5.00e-04 elapsed=198.6m
+[12106.8s] [ram] step 72200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12106.8s] [train] 72200/90000 loss=0.0828 arrow=0.0027 lr=5.00e-04 elapsed=199.3m
+[12148.2s] [ram] step 72250: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12148.2s] [train] 72250/90000 loss=0.0813 arrow=0.0026 lr=5.00e-04 elapsed=200.0m
+[12189.3s] [ram] step 72300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12189.3s] [train] 72300/90000 loss=0.0795 arrow=0.0026 lr=5.00e-04 elapsed=200.6m
+[12230.7s] [ram] step 72350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12230.7s] [train] 72350/90000 loss=0.0866 arrow=0.0033 lr=5.00e-04 elapsed=201.3m
+[12272.3s] [ram] step 72400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12272.3s] [train] 72400/90000 loss=0.0819 arrow=0.0026 lr=5.00e-04 elapsed=202.0m
+[12313.9s] [ram] step 72450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12313.9s] [train] 72450/90000 loss=0.0839 arrow=0.0054 lr=5.00e-04 elapsed=202.7m
+[12355.4s] [ram] step 72500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12355.4s] [train] 72500/90000 loss=0.0809 arrow=0.0029 lr=5.00e-04 elapsed=203.4m
+[12397.0s] [ram] step 72550: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12397.0s] [train] 72550/90000 loss=0.0782 arrow=0.0029 lr=5.00e-04 elapsed=204.1m
+[12438.5s] [ram] step 72600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12438.5s] [train] 72600/90000 loss=0.0804 arrow=0.0025 lr=5.00e-04 elapsed=204.8m
+[12480.1s] [ram] step 72650: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12480.1s] [train] 72650/90000 loss=0.0813 arrow=0.0027 lr=5.00e-04 elapsed=205.5m
+[12521.2s] [ram] step 72700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12521.2s] [train] 72700/90000 loss=0.0857 arrow=0.0033 lr=5.00e-04 elapsed=206.2m
+[12562.5s] [ram] step 72750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12562.5s] [train] 72750/90000 loss=0.0833 arrow=0.0043 lr=5.00e-04 elapsed=206.9m
+[12604.1s] [ram] step 72800: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[12604.1s] [train] 72800/90000 loss=0.0807 arrow=0.0033 lr=5.00e-04 elapsed=207.6m
+[12645.5s] [ram] step 72850: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[12645.5s] [train] 72850/90000 loss=0.0817 arrow=0.0027 lr=5.00e-04 elapsed=208.2m
+[12686.1s] [ram] step 72900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12686.1s] [train] 72900/90000 loss=0.0873 arrow=0.0035 lr=5.00e-04 elapsed=208.9m
+[12727.7s] [ram] step 72950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12727.7s] [train] 72950/90000 loss=0.0912 arrow=0.0034 lr=5.00e-04 elapsed=209.6m
+[12769.3s] [ram] step 73000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12769.3s] [train] 73000/90000 loss=0.0801 arrow=0.0029 lr=5.00e-04 elapsed=210.3m
+[12770.4s] [ram] after checkpoint 73000: available=27.83 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[12811.9s] [ram] step 73050: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12811.9s] [train] 73050/90000 loss=0.0841 arrow=0.0031 lr=5.00e-04 elapsed=211.0m
+[12853.6s] [ram] step 73100: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12853.6s] [train] 73100/90000 loss=0.0785 arrow=0.0026 lr=5.00e-04 elapsed=211.7m
+[12895.6s] [ram] step 73150: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[12895.6s] [train] 73150/90000 loss=0.0838 arrow=0.0026 lr=5.00e-04 elapsed=212.4m
+[12937.8s] [ram] step 73200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12937.8s] [train] 73200/90000 loss=0.0839 arrow=0.0032 lr=5.00e-04 elapsed=213.1m
+[12979.5s] [ram] step 73250: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[12979.5s] [train] 73250/90000 loss=0.0835 arrow=0.0025 lr=5.00e-04 elapsed=213.8m
+[13021.2s] [ram] step 73300: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[13021.2s] [train] 73300/90000 loss=0.0845 arrow=0.0030 lr=5.00e-04 elapsed=214.5m
+[13063.0s] [ram] step 73350: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13063.0s] [train] 73350/90000 loss=0.0817 arrow=0.0037 lr=5.00e-04 elapsed=215.2m
+[13104.9s] [ram] step 73400: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13104.9s] [train] 73400/90000 loss=0.0792 arrow=0.0022 lr=5.00e-04 elapsed=215.9m
+[13146.2s] [ram] step 73450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13146.2s] [train] 73450/90000 loss=0.0849 arrow=0.0035 lr=5.00e-04 elapsed=216.6m
+[13187.7s] [ram] step 73500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13187.7s] [train] 73500/90000 loss=0.0799 arrow=0.0041 lr=5.00e-04 elapsed=217.3m
+[13229.3s] [ram] step 73550: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13229.3s] [train] 73550/90000 loss=0.0834 arrow=0.0024 lr=5.00e-04 elapsed=218.0m
+[13270.7s] [ram] step 73600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13270.7s] [train] 73600/90000 loss=0.0746 arrow=0.0025 lr=5.00e-04 elapsed=218.7m
+[13311.7s] [ram] step 73650: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13311.7s] [train] 73650/90000 loss=0.0790 arrow=0.0044 lr=5.00e-04 elapsed=219.3m
+[13352.9s] [ram] step 73700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13352.9s] [train] 73700/90000 loss=0.0830 arrow=0.0028 lr=5.00e-04 elapsed=220.0m
+[13394.6s] [ram] step 73750: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13394.6s] [train] 73750/90000 loss=0.0790 arrow=0.0028 lr=5.00e-04 elapsed=220.7m
+[13436.0s] [ram] step 73800: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13436.0s] [train] 73800/90000 loss=0.0804 arrow=0.0041 lr=5.00e-04 elapsed=221.4m
+[13477.2s] [ram] step 73850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13477.2s] [train] 73850/90000 loss=0.0830 arrow=0.0027 lr=5.00e-04 elapsed=222.1m
+[13518.6s] [ram] step 73900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13518.6s] [train] 73900/90000 loss=0.0850 arrow=0.0029 lr=5.00e-04 elapsed=222.8m
+[13560.1s] [ram] step 73950: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13560.1s] [train] 73950/90000 loss=0.0843 arrow=0.0027 lr=5.00e-04 elapsed=223.5m
+[13601.9s] [ram] step 74000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13601.9s] [train] 74000/90000 loss=0.0866 arrow=0.0040 lr=5.00e-04 elapsed=224.2m
+[13603.1s] [ram] after checkpoint 74000: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13644.5s] [ram] step 74050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13644.5s] [train] 74050/90000 loss=0.0848 arrow=0.0032 lr=5.00e-04 elapsed=224.9m
+[13685.8s] [ram] step 74100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13685.8s] [train] 74100/90000 loss=0.0871 arrow=0.0026 lr=5.00e-04 elapsed=225.6m
+[13727.7s] [ram] step 74150: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13727.7s] [train] 74150/90000 loss=0.0861 arrow=0.0028 lr=5.00e-04 elapsed=226.3m
+[13768.8s] [ram] step 74200: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13768.8s] [train] 74200/90000 loss=0.0827 arrow=0.0029 lr=5.00e-04 elapsed=227.0m
+[13810.0s] [ram] step 74250: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13810.0s] [train] 74250/90000 loss=0.0815 arrow=0.0027 lr=5.00e-04 elapsed=227.6m
+[13851.5s] [ram] step 74300: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13851.5s] [train] 74300/90000 loss=0.0810 arrow=0.0030 lr=5.00e-04 elapsed=228.3m
+[13893.0s] [ram] step 74350: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[13893.0s] [train] 74350/90000 loss=0.0826 arrow=0.0026 lr=5.00e-04 elapsed=229.0m
+[13933.7s] [ram] step 74400: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13933.7s] [train] 74400/90000 loss=0.0820 arrow=0.0026 lr=5.00e-04 elapsed=229.7m
+[13974.9s] [ram] step 74450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[13974.9s] [train] 74450/90000 loss=0.0811 arrow=0.0026 lr=5.00e-04 elapsed=230.4m
+[14016.6s] [ram] step 74500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14016.6s] [train] 74500/90000 loss=0.0849 arrow=0.0030 lr=5.00e-04 elapsed=231.1m
+[14058.2s] [ram] step 74550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14058.2s] [train] 74550/90000 loss=0.0829 arrow=0.0028 lr=5.00e-04 elapsed=231.8m
+[14099.5s] [ram] step 74600: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14099.5s] [train] 74600/90000 loss=0.0819 arrow=0.0028 lr=5.00e-04 elapsed=232.5m
+[14140.9s] [ram] step 74650: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14140.9s] [train] 74650/90000 loss=0.0819 arrow=0.0033 lr=5.00e-04 elapsed=233.2m
+[14182.0s] [ram] step 74700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14182.0s] [train] 74700/90000 loss=0.0775 arrow=0.0024 lr=5.00e-04 elapsed=233.8m
+[14223.8s] [ram] step 74750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14223.8s] [train] 74750/90000 loss=0.0816 arrow=0.0023 lr=5.00e-04 elapsed=234.5m
+[14264.6s] [ram] step 74800: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14264.6s] [train] 74800/90000 loss=0.0873 arrow=0.0033 lr=5.00e-04 elapsed=235.2m
+[14305.9s] [ram] step 74850: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14305.9s] [train] 74850/90000 loss=0.0769 arrow=0.0028 lr=5.00e-04 elapsed=235.9m
+[14347.5s] [ram] step 74900: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14347.5s] [train] 74900/90000 loss=0.0876 arrow=0.0031 lr=5.00e-04 elapsed=236.6m
+[14388.4s] [ram] step 74950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14388.4s] [train] 74950/90000 loss=0.0842 arrow=0.0028 lr=5.00e-04 elapsed=237.3m
+[14429.9s] [ram] step 75000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14429.9s] [train] 75000/90000 loss=0.0800 arrow=0.0034 lr=5.00e-04 elapsed=238.0m
+[14431.0s] [ram] after checkpoint 75000: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14472.6s] [ram] step 75050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14472.6s] [train] 75050/90000 loss=0.0804 arrow=0.0037 lr=5.00e-04 elapsed=238.7m
+[14513.9s] [ram] step 75100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14513.9s] [train] 75100/90000 loss=0.0847 arrow=0.0029 lr=5.00e-04 elapsed=239.4m
+[14555.1s] [ram] step 75150: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14555.1s] [train] 75150/90000 loss=0.0907 arrow=0.0033 lr=5.00e-04 elapsed=240.1m
+[14596.2s] [ram] step 75200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14596.2s] [train] 75200/90000 loss=0.0780 arrow=0.0023 lr=5.00e-04 elapsed=240.8m
+[14638.1s] [ram] step 75250: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14638.1s] [train] 75250/90000 loss=0.0884 arrow=0.0029 lr=5.00e-04 elapsed=241.5m
+[14679.3s] [ram] step 75300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14679.3s] [train] 75300/90000 loss=0.0802 arrow=0.0032 lr=5.00e-04 elapsed=242.1m
+[14720.3s] [ram] step 75350: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14720.3s] [train] 75350/90000 loss=0.0808 arrow=0.0033 lr=5.00e-04 elapsed=242.8m
+[14761.7s] [ram] step 75400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14761.7s] [train] 75400/90000 loss=0.0847 arrow=0.0054 lr=5.00e-04 elapsed=243.5m
+[14803.0s] [ram] step 75450: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14803.0s] [train] 75450/90000 loss=0.0849 arrow=0.0026 lr=5.00e-04 elapsed=244.2m
+[14844.4s] [ram] step 75500: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14844.4s] [train] 75500/90000 loss=0.0839 arrow=0.0032 lr=5.00e-04 elapsed=244.9m
+[14885.3s] [ram] step 75550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14885.3s] [train] 75550/90000 loss=0.0767 arrow=0.0023 lr=5.00e-04 elapsed=245.6m
+[14926.7s] [ram] step 75600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14926.7s] [train] 75600/90000 loss=0.0845 arrow=0.0039 lr=5.00e-04 elapsed=246.3m
+[14968.3s] [ram] step 75650: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[14968.3s] [train] 75650/90000 loss=0.0845 arrow=0.0025 lr=5.00e-04 elapsed=247.0m
+[15009.5s] [ram] step 75700: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15009.5s] [train] 75700/90000 loss=0.0823 arrow=0.0024 lr=5.00e-04 elapsed=247.6m
+[15050.8s] [ram] step 75750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15050.8s] [train] 75750/90000 loss=0.0914 arrow=0.0027 lr=5.00e-04 elapsed=248.3m
+[15092.2s] [ram] step 75800: available=27.82 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15092.2s] [train] 75800/90000 loss=0.0882 arrow=0.0036 lr=5.00e-04 elapsed=249.0m
+[15133.7s] [ram] step 75850: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15133.7s] [train] 75850/90000 loss=0.0794 arrow=0.0027 lr=5.00e-04 elapsed=249.7m
+[15175.0s] [ram] step 75900: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15175.0s] [train] 75900/90000 loss=0.0842 arrow=0.0026 lr=5.00e-04 elapsed=250.4m
+[15216.3s] [ram] step 75950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15216.3s] [train] 75950/90000 loss=0.0841 arrow=0.0026 lr=5.00e-04 elapsed=251.1m
+[15257.9s] [ram] step 76000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15257.9s] [train] 76000/90000 loss=0.0847 arrow=0.0030 lr=5.00e-04 elapsed=251.8m
+[15259.1s] [ram] after checkpoint 76000: available=27.82 GB | system_used=11.2% | main_rss=2.86 GB | children_rss=0.00 GB
+[15301.1s] [ram] step 76050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15301.1s] [train] 76050/90000 loss=0.0861 arrow=0.0024 lr=5.00e-04 elapsed=252.5m
+[15342.5s] [ram] step 76100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15342.5s] [train] 76100/90000 loss=0.0832 arrow=0.0032 lr=5.00e-04 elapsed=253.2m
+[15384.5s] [ram] step 76150: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[15384.5s] [train] 76150/90000 loss=0.0808 arrow=0.0030 lr=5.00e-04 elapsed=253.9m
+[15426.5s] [ram] step 76200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15426.5s] [train] 76200/90000 loss=0.0822 arrow=0.0025 lr=5.00e-04 elapsed=254.6m
+[15468.2s] [ram] step 76250: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15468.2s] [train] 76250/90000 loss=0.0863 arrow=0.0028 lr=5.00e-04 elapsed=255.3m
+[15509.9s] [ram] step 76300: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[15509.9s] [train] 76300/90000 loss=0.0819 arrow=0.0044 lr=5.00e-04 elapsed=256.0m
+[15551.9s] [ram] step 76350: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[15551.9s] [train] 76350/90000 loss=0.0780 arrow=0.0034 lr=5.00e-04 elapsed=256.7m
+[15594.3s] [ram] step 76400: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15594.3s] [train] 76400/90000 loss=0.0792 arrow=0.0031 lr=5.00e-04 elapsed=257.4m
+[15636.0s] [ram] step 76450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15636.0s] [train] 76450/90000 loss=0.0879 arrow=0.0038 lr=5.00e-04 elapsed=258.1m
+[15678.0s] [ram] step 76500: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15678.0s] [train] 76500/90000 loss=0.0856 arrow=0.0035 lr=5.00e-04 elapsed=258.8m
+[15720.2s] [ram] step 76550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15720.2s] [train] 76550/90000 loss=0.0784 arrow=0.0031 lr=5.00e-04 elapsed=259.5m
+[15761.9s] [ram] step 76600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15761.9s] [train] 76600/90000 loss=0.0808 arrow=0.0025 lr=5.00e-04 elapsed=260.2m
+[15803.0s] [ram] step 76650: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15803.0s] [train] 76650/90000 loss=0.0811 arrow=0.0029 lr=5.00e-04 elapsed=260.9m
+[15844.2s] [ram] step 76700: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15844.2s] [train] 76700/90000 loss=0.0863 arrow=0.0033 lr=5.00e-04 elapsed=261.6m
+[15885.9s] [ram] step 76750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15885.9s] [train] 76750/90000 loss=0.0824 arrow=0.0029 lr=5.00e-04 elapsed=262.2m
+[15927.1s] [ram] step 76800: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[15927.1s] [train] 76800/90000 loss=0.0807 arrow=0.0027 lr=5.00e-04 elapsed=262.9m
+[15968.2s] [ram] step 76850: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[15968.2s] [train] 76850/90000 loss=0.0925 arrow=0.0066 lr=5.00e-04 elapsed=263.6m
+[16009.4s] [ram] step 76900: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16009.4s] [train] 76900/90000 loss=0.0850 arrow=0.0023 lr=5.00e-04 elapsed=264.3m
+[16051.3s] [ram] step 76950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16051.3s] [train] 76950/90000 loss=0.0803 arrow=0.0027 lr=5.00e-04 elapsed=265.0m
+[16093.0s] [ram] step 77000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16093.0s] [train] 77000/90000 loss=0.0816 arrow=0.0030 lr=5.00e-04 elapsed=265.7m
+[16094.1s] [ram] after checkpoint 77000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16135.2s] [ram] step 77050: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[16135.2s] [train] 77050/90000 loss=0.0871 arrow=0.0041 lr=5.00e-04 elapsed=266.4m
+[16176.4s] [ram] step 77100: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[16176.4s] [train] 77100/90000 loss=0.0844 arrow=0.0027 lr=5.00e-04 elapsed=267.1m
+[16217.9s] [ram] step 77150: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[16217.9s] [train] 77150/90000 loss=0.0884 arrow=0.0027 lr=5.00e-04 elapsed=267.8m
+[16258.9s] [ram] step 77200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16258.9s] [train] 77200/90000 loss=0.0797 arrow=0.0032 lr=5.00e-04 elapsed=268.5m
+[16300.0s] [ram] step 77250: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16300.0s] [train] 77250/90000 loss=0.0861 arrow=0.0036 lr=5.00e-04 elapsed=269.1m
+[16341.2s] [ram] step 77300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16341.2s] [train] 77300/90000 loss=0.0781 arrow=0.0034 lr=5.00e-04 elapsed=269.8m
+[16382.5s] [ram] step 77350: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16382.5s] [train] 77350/90000 loss=0.0884 arrow=0.0032 lr=5.00e-04 elapsed=270.5m
+[16423.4s] [ram] step 77400: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[16423.4s] [train] 77400/90000 loss=0.0808 arrow=0.0023 lr=5.00e-04 elapsed=271.2m
+[16464.4s] [ram] step 77450: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16464.4s] [train] 77450/90000 loss=0.0853 arrow=0.0034 lr=5.00e-04 elapsed=271.9m
+[16506.1s] [ram] step 77500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16506.1s] [train] 77500/90000 loss=0.0837 arrow=0.0027 lr=5.00e-04 elapsed=272.6m
+[16547.5s] [ram] step 77550: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[16547.5s] [train] 77550/90000 loss=0.0827 arrow=0.0027 lr=5.00e-04 elapsed=273.3m
+[16588.2s] [ram] step 77600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16588.2s] [train] 77600/90000 loss=0.0817 arrow=0.0027 lr=5.00e-04 elapsed=274.0m
+[16629.3s] [ram] step 77650: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16629.3s] [train] 77650/90000 loss=0.0813 arrow=0.0024 lr=5.00e-04 elapsed=274.6m
+[16670.1s] [ram] step 77700: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16670.1s] [train] 77700/90000 loss=0.0734 arrow=0.0024 lr=5.00e-04 elapsed=275.3m
+[16711.6s] [ram] step 77750: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16711.6s] [train] 77750/90000 loss=0.0841 arrow=0.0034 lr=5.00e-04 elapsed=276.0m
+[16752.6s] [ram] step 77800: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16752.6s] [train] 77800/90000 loss=0.0825 arrow=0.0025 lr=5.00e-04 elapsed=276.7m
+[16794.2s] [ram] step 77850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16794.2s] [train] 77850/90000 loss=0.0794 arrow=0.0033 lr=5.00e-04 elapsed=277.4m
+[16836.4s] [ram] step 77900: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16836.4s] [train] 77900/90000 loss=0.0844 arrow=0.0039 lr=5.00e-04 elapsed=278.1m
+[16877.5s] [ram] step 77950: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16877.5s] [train] 77950/90000 loss=0.0849 arrow=0.0055 lr=5.00e-04 elapsed=278.8m
+[16918.6s] [ram] step 78000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16918.6s] [train] 78000/90000 loss=0.0764 arrow=0.0028 lr=5.00e-04 elapsed=279.5m
+[16919.8s] [ram] after checkpoint 78000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16960.9s] [ram] step 78050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[16960.9s] [train] 78050/90000 loss=0.0787 arrow=0.0040 lr=5.00e-04 elapsed=280.2m
+[17002.3s] [ram] step 78100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17002.3s] [train] 78100/90000 loss=0.0782 arrow=0.0031 lr=5.00e-04 elapsed=280.9m
+[17044.0s] [ram] step 78150: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17044.0s] [train] 78150/90000 loss=0.0835 arrow=0.0041 lr=5.00e-04 elapsed=281.5m
+[17086.0s] [ram] step 78200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17086.0s] [train] 78200/90000 loss=0.0826 arrow=0.0027 lr=5.00e-04 elapsed=282.3m
+[17128.3s] [ram] step 78250: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[17128.3s] [train] 78250/90000 loss=0.0890 arrow=0.0051 lr=5.00e-04 elapsed=283.0m
+[17170.0s] [ram] step 78300: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[17170.0s] [train] 78300/90000 loss=0.0783 arrow=0.0037 lr=5.00e-04 elapsed=283.6m
+[17210.7s] [ram] step 78350: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17210.7s] [train] 78350/90000 loss=0.0800 arrow=0.0025 lr=5.00e-04 elapsed=284.3m
+[17251.8s] [ram] step 78400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17251.8s] [train] 78400/90000 loss=0.0826 arrow=0.0026 lr=5.00e-04 elapsed=285.0m
+[17292.9s] [ram] step 78450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17292.9s] [train] 78450/90000 loss=0.0853 arrow=0.0027 lr=5.00e-04 elapsed=285.7m
+[17333.9s] [ram] step 78500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17333.9s] [train] 78500/90000 loss=0.0825 arrow=0.0032 lr=5.00e-04 elapsed=286.4m
+[17374.8s] [ram] step 78550: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17374.8s] [train] 78550/90000 loss=0.0776 arrow=0.0025 lr=5.00e-04 elapsed=287.1m
+[17415.7s] [ram] step 78600: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17415.7s] [train] 78600/90000 loss=0.0807 arrow=0.0043 lr=5.00e-04 elapsed=287.7m
+[17456.6s] [ram] step 78650: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17456.6s] [train] 78650/90000 loss=0.0782 arrow=0.0024 lr=5.00e-04 elapsed=288.4m
+[17497.6s] [ram] step 78700: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17497.6s] [train] 78700/90000 loss=0.0840 arrow=0.0027 lr=5.00e-04 elapsed=289.1m
+[17538.9s] [ram] step 78750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17538.9s] [train] 78750/90000 loss=0.0787 arrow=0.0030 lr=5.00e-04 elapsed=289.8m
+[17580.0s] [ram] step 78800: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17580.0s] [train] 78800/90000 loss=0.0846 arrow=0.0044 lr=5.00e-04 elapsed=290.5m
+[17621.3s] [ram] step 78850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17621.3s] [train] 78850/90000 loss=0.0847 arrow=0.0028 lr=5.00e-04 elapsed=291.2m
+[17662.6s] [ram] step 78900: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17662.6s] [train] 78900/90000 loss=0.0798 arrow=0.0029 lr=5.00e-04 elapsed=291.9m
+[17703.6s] [ram] step 78950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17703.6s] [train] 78950/90000 loss=0.0766 arrow=0.0029 lr=5.00e-04 elapsed=292.5m
+[17744.7s] [ram] step 79000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17744.7s] [train] 79000/90000 loss=0.0795 arrow=0.0029 lr=5.00e-04 elapsed=293.2m
+[17745.9s] [ram] after checkpoint 79000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17787.1s] [ram] step 79050: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17787.1s] [train] 79050/90000 loss=0.0776 arrow=0.0030 lr=5.00e-04 elapsed=293.9m
+[17827.7s] [ram] step 79100: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17827.7s] [train] 79100/90000 loss=0.0861 arrow=0.0031 lr=5.00e-04 elapsed=294.6m
+[17868.6s] [ram] step 79150: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[17868.6s] [train] 79150/90000 loss=0.0772 arrow=0.0047 lr=5.00e-04 elapsed=295.3m
+[17909.8s] [ram] step 79200: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[17909.8s] [train] 79200/90000 loss=0.0843 arrow=0.0031 lr=5.00e-04 elapsed=296.0m
+[17951.1s] [ram] step 79250: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[17951.1s] [train] 79250/90000 loss=0.0778 arrow=0.0036 lr=5.00e-04 elapsed=296.7m
+[17991.8s] [ram] step 79300: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[17991.8s] [train] 79300/90000 loss=0.0905 arrow=0.0031 lr=5.00e-04 elapsed=297.3m
+[18032.6s] [ram] step 79350: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18032.6s] [train] 79350/90000 loss=0.0725 arrow=0.0027 lr=5.00e-04 elapsed=298.0m
+[18073.8s] [ram] step 79400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18073.8s] [train] 79400/90000 loss=0.0828 arrow=0.0027 lr=5.00e-04 elapsed=298.7m
+[18115.1s] [ram] step 79450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18115.1s] [train] 79450/90000 loss=0.0799 arrow=0.0031 lr=5.00e-04 elapsed=299.4m
+[18156.2s] [ram] step 79500: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18156.2s] [train] 79500/90000 loss=0.0782 arrow=0.0025 lr=5.00e-04 elapsed=300.1m
+[18197.1s] [ram] step 79550: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18197.1s] [train] 79550/90000 loss=0.0772 arrow=0.0030 lr=5.00e-04 elapsed=300.8m
+[18238.0s] [ram] step 79600: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18238.0s] [train] 79600/90000 loss=0.0777 arrow=0.0024 lr=5.00e-04 elapsed=301.4m
+[18278.8s] [ram] step 79650: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18278.8s] [train] 79650/90000 loss=0.0865 arrow=0.0028 lr=5.00e-04 elapsed=302.1m
+[18319.4s] [ram] step 79700: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18319.4s] [train] 79700/90000 loss=0.0762 arrow=0.0025 lr=5.00e-04 elapsed=302.8m
+[18360.7s] [ram] step 79750: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18360.7s] [train] 79750/90000 loss=0.0801 arrow=0.0030 lr=5.00e-04 elapsed=303.5m
+[18401.8s] [ram] step 79800: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18401.8s] [train] 79800/90000 loss=0.0829 arrow=0.0027 lr=5.00e-04 elapsed=304.2m
+[18442.3s] [ram] step 79850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18442.3s] [train] 79850/90000 loss=0.0834 arrow=0.0031 lr=5.00e-04 elapsed=304.9m
+[18483.2s] [ram] step 79900: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18483.2s] [train] 79900/90000 loss=0.0848 arrow=0.0034 lr=5.00e-04 elapsed=305.5m
+[18524.4s] [ram] step 79950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18524.4s] [train] 79950/90000 loss=0.0840 arrow=0.0028 lr=5.00e-04 elapsed=306.2m
+[18565.9s] [ram] step 80000: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[18565.9s] [train] 80000/90000 loss=0.0816 arrow=0.0025 lr=5.00e-05 elapsed=306.9m
+[18567.1s] [ram] after checkpoint 80000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18608.0s] [ram] step 80050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18608.0s] [train] 80050/90000 loss=0.0762 arrow=0.0038 lr=5.00e-05 elapsed=307.6m
+[18648.8s] [ram] step 80100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18648.8s] [train] 80100/90000 loss=0.0793 arrow=0.0026 lr=5.00e-05 elapsed=308.3m
+[18689.5s] [ram] step 80150: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18689.5s] [train] 80150/90000 loss=0.0748 arrow=0.0023 lr=5.00e-05 elapsed=309.0m
+[18730.3s] [ram] step 80200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18730.3s] [train] 80200/90000 loss=0.0750 arrow=0.0026 lr=5.00e-05 elapsed=309.7m
+[18771.6s] [ram] step 80250: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18771.6s] [train] 80250/90000 loss=0.0799 arrow=0.0025 lr=5.00e-05 elapsed=310.3m
+[18812.7s] [ram] step 80300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18812.7s] [train] 80300/90000 loss=0.0751 arrow=0.0031 lr=5.00e-05 elapsed=311.0m
+[18853.9s] [ram] step 80350: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18853.9s] [train] 80350/90000 loss=0.0789 arrow=0.0032 lr=5.00e-05 elapsed=311.7m
+[18894.8s] [ram] step 80400: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18894.8s] [train] 80400/90000 loss=0.0832 arrow=0.0035 lr=5.00e-05 elapsed=312.4m
+[18935.6s] [ram] step 80450: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18935.6s] [train] 80450/90000 loss=0.0790 arrow=0.0031 lr=5.00e-05 elapsed=313.1m
+[18976.4s] [ram] step 80500: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[18976.4s] [train] 80500/90000 loss=0.0838 arrow=0.0026 lr=5.00e-05 elapsed=313.8m
+[19017.2s] [ram] step 80550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19017.2s] [train] 80550/90000 loss=0.0838 arrow=0.0027 lr=5.00e-05 elapsed=314.4m
+[19057.5s] [ram] step 80600: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19057.5s] [train] 80600/90000 loss=0.0818 arrow=0.0031 lr=5.00e-05 elapsed=315.1m
+[19098.3s] [ram] step 80650: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19098.3s] [train] 80650/90000 loss=0.0797 arrow=0.0029 lr=5.00e-05 elapsed=315.8m
+[19138.9s] [ram] step 80700: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19138.9s] [train] 80700/90000 loss=0.0844 arrow=0.0031 lr=5.00e-05 elapsed=316.5m
+[19179.6s] [ram] step 80750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19179.6s] [train] 80750/90000 loss=0.0777 arrow=0.0035 lr=5.00e-05 elapsed=317.1m
+[19220.0s] [ram] step 80800: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19220.0s] [train] 80800/90000 loss=0.0733 arrow=0.0026 lr=5.00e-05 elapsed=317.8m
+[19260.6s] [ram] step 80850: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19260.6s] [train] 80850/90000 loss=0.0819 arrow=0.0025 lr=5.00e-05 elapsed=318.5m
+[19301.4s] [ram] step 80900: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19301.4s] [train] 80900/90000 loss=0.0780 arrow=0.0027 lr=5.00e-05 elapsed=319.2m
+[19341.9s] [ram] step 80950: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19341.9s] [train] 80950/90000 loss=0.0789 arrow=0.0030 lr=5.00e-05 elapsed=319.8m
+[19382.7s] [ram] step 81000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19382.7s] [train] 81000/90000 loss=0.0783 arrow=0.0022 lr=5.00e-05 elapsed=320.5m
+[19383.9s] [ram] after checkpoint 81000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19424.8s] [ram] step 81050: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19424.8s] [train] 81050/90000 loss=0.0770 arrow=0.0029 lr=5.00e-05 elapsed=321.2m
+[19465.5s] [ram] step 81100: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19465.5s] [train] 81100/90000 loss=0.0773 arrow=0.0025 lr=5.00e-05 elapsed=321.9m
+[19506.3s] [ram] step 81150: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19506.3s] [train] 81150/90000 loss=0.0806 arrow=0.0030 lr=5.00e-05 elapsed=322.6m
+[19546.7s] [ram] step 81200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19546.7s] [train] 81200/90000 loss=0.0787 arrow=0.0063 lr=5.00e-05 elapsed=323.3m
+[19587.7s] [ram] step 81250: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19587.7s] [train] 81250/90000 loss=0.0847 arrow=0.0029 lr=5.00e-05 elapsed=323.9m
+[19628.7s] [ram] step 81300: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19628.7s] [train] 81300/90000 loss=0.0748 arrow=0.0026 lr=5.00e-05 elapsed=324.6m
+[19669.1s] [ram] step 81350: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19669.1s] [train] 81350/90000 loss=0.0784 arrow=0.0029 lr=5.00e-05 elapsed=325.3m
+[19709.8s] [ram] step 81400: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19709.8s] [train] 81400/90000 loss=0.0754 arrow=0.0030 lr=5.00e-05 elapsed=326.0m
+[19750.7s] [ram] step 81450: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19750.7s] [train] 81450/90000 loss=0.0771 arrow=0.0027 lr=5.00e-05 elapsed=326.7m
+[19791.7s] [ram] step 81500: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19791.7s] [train] 81500/90000 loss=0.0813 arrow=0.0034 lr=5.00e-05 elapsed=327.3m
+[19832.8s] [ram] step 81550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19832.8s] [train] 81550/90000 loss=0.0853 arrow=0.0038 lr=5.00e-05 elapsed=328.0m
+[19873.6s] [ram] step 81600: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19873.6s] [train] 81600/90000 loss=0.0760 arrow=0.0027 lr=5.00e-05 elapsed=328.7m
+[19914.5s] [ram] step 81650: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19914.5s] [train] 81650/90000 loss=0.0826 arrow=0.0036 lr=5.00e-05 elapsed=329.4m
+[19955.1s] [ram] step 81700: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[19955.1s] [train] 81700/90000 loss=0.0760 arrow=0.0025 lr=5.00e-05 elapsed=330.1m
+[19996.0s] [ram] step 81750: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[19996.0s] [train] 81750/90000 loss=0.0748 arrow=0.0032 lr=5.00e-05 elapsed=330.7m
+[20036.9s] [ram] step 81800: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20036.9s] [train] 81800/90000 loss=0.0799 arrow=0.0028 lr=5.00e-05 elapsed=331.4m
+[20077.9s] [ram] step 81850: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20077.9s] [train] 81850/90000 loss=0.0776 arrow=0.0027 lr=5.00e-05 elapsed=332.1m
+[20118.4s] [ram] step 81900: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20118.4s] [train] 81900/90000 loss=0.0791 arrow=0.0025 lr=5.00e-05 elapsed=332.8m
+[20159.1s] [ram] step 81950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20159.1s] [train] 81950/90000 loss=0.0785 arrow=0.0037 lr=5.00e-05 elapsed=333.5m
+[20199.8s] [ram] step 82000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20199.8s] [train] 82000/90000 loss=0.0794 arrow=0.0032 lr=5.00e-05 elapsed=334.1m
+[20201.0s] [ram] after checkpoint 82000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20241.7s] [ram] step 82050: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20241.7s] [train] 82050/90000 loss=0.0784 arrow=0.0031 lr=5.00e-05 elapsed=334.8m
+[20282.1s] [ram] step 82100: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20282.1s] [train] 82100/90000 loss=0.0738 arrow=0.0029 lr=5.00e-05 elapsed=335.5m
+[20322.7s] [ram] step 82150: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20322.7s] [train] 82150/90000 loss=0.0824 arrow=0.0031 lr=5.00e-05 elapsed=336.2m
+[20363.7s] [ram] step 82200: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20363.7s] [train] 82200/90000 loss=0.0817 arrow=0.0028 lr=5.00e-05 elapsed=336.9m
+[20404.5s] [ram] step 82250: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20404.5s] [train] 82250/90000 loss=0.0801 arrow=0.0030 lr=5.00e-05 elapsed=337.6m
+[20445.0s] [ram] step 82300: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20445.0s] [train] 82300/90000 loss=0.0828 arrow=0.0027 lr=5.00e-05 elapsed=338.2m
+[20485.8s] [ram] step 82350: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20485.8s] [train] 82350/90000 loss=0.0824 arrow=0.0035 lr=5.00e-05 elapsed=338.9m
+[20526.4s] [ram] step 82400: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20526.4s] [train] 82400/90000 loss=0.0805 arrow=0.0031 lr=5.00e-05 elapsed=339.6m
+[20567.0s] [ram] step 82450: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20567.0s] [train] 82450/90000 loss=0.0783 arrow=0.0040 lr=5.00e-05 elapsed=340.3m
+[20607.7s] [ram] step 82500: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20607.7s] [train] 82500/90000 loss=0.0746 arrow=0.0030 lr=5.00e-05 elapsed=340.9m
+[20648.4s] [ram] step 82550: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20648.4s] [train] 82550/90000 loss=0.0794 arrow=0.0027 lr=5.00e-05 elapsed=341.6m
+[20689.5s] [ram] step 82600: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20689.5s] [train] 82600/90000 loss=0.0815 arrow=0.0027 lr=5.00e-05 elapsed=342.3m
+[20730.5s] [ram] step 82650: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20730.5s] [train] 82650/90000 loss=0.0775 arrow=0.0035 lr=5.00e-05 elapsed=343.0m
+[20771.4s] [ram] step 82700: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20771.4s] [train] 82700/90000 loss=0.0778 arrow=0.0023 lr=5.00e-05 elapsed=343.7m
+[20812.4s] [ram] step 82750: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[20812.4s] [train] 82750/90000 loss=0.0792 arrow=0.0027 lr=5.00e-05 elapsed=344.4m
+[20853.4s] [ram] step 82800: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20853.4s] [train] 82800/90000 loss=0.0763 arrow=0.0026 lr=5.00e-05 elapsed=345.0m
+[20894.1s] [ram] step 82850: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20894.1s] [train] 82850/90000 loss=0.0785 arrow=0.0027 lr=5.00e-05 elapsed=345.7m
+[20935.0s] [ram] step 82900: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20935.0s] [train] 82900/90000 loss=0.0805 arrow=0.0031 lr=5.00e-05 elapsed=346.4m
+[20975.6s] [ram] step 82950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[20975.6s] [train] 82950/90000 loss=0.0743 arrow=0.0034 lr=5.00e-05 elapsed=347.1m
+[21016.6s] [ram] step 83000: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21016.6s] [train] 83000/90000 loss=0.0792 arrow=0.0023 lr=5.00e-05 elapsed=347.8m
+[21017.8s] [ram] after checkpoint 83000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21058.7s] [ram] step 83050: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21058.7s] [train] 83050/90000 loss=0.0812 arrow=0.0032 lr=5.00e-05 elapsed=348.5m
+[21099.5s] [ram] step 83100: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21099.5s] [train] 83100/90000 loss=0.0754 arrow=0.0023 lr=5.00e-05 elapsed=349.1m
+[21140.4s] [ram] step 83150: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21140.4s] [train] 83150/90000 loss=0.0820 arrow=0.0025 lr=5.00e-05 elapsed=349.8m
+[21181.2s] [ram] step 83200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21181.2s] [train] 83200/90000 loss=0.0764 arrow=0.0029 lr=5.00e-05 elapsed=350.5m
+[21222.4s] [ram] step 83250: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21222.4s] [train] 83250/90000 loss=0.0762 arrow=0.0036 lr=5.00e-05 elapsed=351.2m
+[21263.6s] [ram] step 83300: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21263.6s] [train] 83300/90000 loss=0.0786 arrow=0.0029 lr=5.00e-05 elapsed=351.9m
+[21304.8s] [ram] step 83350: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21304.8s] [train] 83350/90000 loss=0.0789 arrow=0.0037 lr=5.00e-05 elapsed=352.6m
+[21345.6s] [ram] step 83400: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21345.6s] [train] 83400/90000 loss=0.0736 arrow=0.0028 lr=5.00e-05 elapsed=353.2m
+[21386.6s] [ram] step 83450: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21386.6s] [train] 83450/90000 loss=0.0773 arrow=0.0030 lr=5.00e-05 elapsed=353.9m
+[21427.8s] [ram] step 83500: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21427.8s] [train] 83500/90000 loss=0.0826 arrow=0.0036 lr=5.00e-05 elapsed=354.6m
+[21468.4s] [ram] step 83550: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21468.4s] [train] 83550/90000 loss=0.0744 arrow=0.0025 lr=5.00e-05 elapsed=355.3m
+[21509.2s] [ram] step 83600: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21509.2s] [train] 83600/90000 loss=0.0781 arrow=0.0040 lr=5.00e-05 elapsed=356.0m
+[21549.8s] [ram] step 83650: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21549.8s] [train] 83650/90000 loss=0.0752 arrow=0.0025 lr=5.00e-05 elapsed=356.6m
+[21590.5s] [ram] step 83700: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21590.5s] [train] 83700/90000 loss=0.0702 arrow=0.0027 lr=5.00e-05 elapsed=357.3m
+[21631.8s] [ram] step 83750: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21631.8s] [train] 83750/90000 loss=0.0784 arrow=0.0025 lr=5.00e-05 elapsed=358.0m
+[21672.6s] [ram] step 83800: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21672.6s] [train] 83800/90000 loss=0.0745 arrow=0.0023 lr=5.00e-05 elapsed=358.7m
+[21713.2s] [ram] step 83850: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21713.2s] [train] 83850/90000 loss=0.0793 arrow=0.0035 lr=5.00e-05 elapsed=359.4m
+[21754.2s] [ram] step 83900: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21754.2s] [train] 83900/90000 loss=0.0854 arrow=0.0030 lr=5.00e-05 elapsed=360.1m
+[21794.8s] [ram] step 83950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21794.8s] [train] 83950/90000 loss=0.0740 arrow=0.0023 lr=5.00e-05 elapsed=360.7m
+[21836.0s] [ram] step 84000: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[21836.0s] [train] 84000/90000 loss=0.0791 arrow=0.0028 lr=5.00e-05 elapsed=361.4m
+[21837.2s] [ram] after checkpoint 84000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21878.0s] [ram] step 84050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21878.0s] [train] 84050/90000 loss=0.0788 arrow=0.0024 lr=5.00e-05 elapsed=362.1m
+[21918.8s] [ram] step 84100: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21918.8s] [train] 84100/90000 loss=0.0782 arrow=0.0022 lr=5.00e-05 elapsed=362.8m
+[21959.4s] [ram] step 84150: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[21959.4s] [train] 84150/90000 loss=0.0765 arrow=0.0031 lr=5.00e-05 elapsed=363.5m
+[22000.4s] [ram] step 84200: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22000.4s] [train] 84200/90000 loss=0.0786 arrow=0.0034 lr=5.00e-05 elapsed=364.2m
+[22041.3s] [ram] step 84250: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22041.3s] [train] 84250/90000 loss=0.0770 arrow=0.0025 lr=5.00e-05 elapsed=364.8m
+[22082.0s] [ram] step 84300: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22082.0s] [train] 84300/90000 loss=0.0724 arrow=0.0021 lr=5.00e-05 elapsed=365.5m
+[22122.5s] [ram] step 84350: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22122.5s] [train] 84350/90000 loss=0.0813 arrow=0.0049 lr=5.00e-05 elapsed=366.2m
+[22163.3s] [ram] step 84400: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22163.3s] [train] 84400/90000 loss=0.0844 arrow=0.0028 lr=5.00e-05 elapsed=366.9m
+[22204.0s] [ram] step 84450: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22204.0s] [train] 84450/90000 loss=0.0733 arrow=0.0032 lr=5.00e-05 elapsed=367.5m
+[22245.0s] [ram] step 84500: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22245.0s] [train] 84500/90000 loss=0.0691 arrow=0.0028 lr=5.00e-05 elapsed=368.2m
+[22285.8s] [ram] step 84550: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22285.8s] [train] 84550/90000 loss=0.0805 arrow=0.0035 lr=5.00e-05 elapsed=368.9m
+[22326.7s] [ram] step 84600: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22326.7s] [train] 84600/90000 loss=0.0798 arrow=0.0024 lr=5.00e-05 elapsed=369.6m
+[22367.5s] [ram] step 84650: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22367.5s] [train] 84650/90000 loss=0.0759 arrow=0.0027 lr=5.00e-05 elapsed=370.3m
+[22408.1s] [ram] step 84700: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22408.1s] [train] 84700/90000 loss=0.0750 arrow=0.0026 lr=5.00e-05 elapsed=371.0m
+[22448.9s] [ram] step 84750: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22448.9s] [train] 84750/90000 loss=0.0783 arrow=0.0026 lr=5.00e-05 elapsed=371.6m
+[22489.8s] [ram] step 84800: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22489.8s] [train] 84800/90000 loss=0.0729 arrow=0.0027 lr=5.00e-05 elapsed=372.3m
+[22530.5s] [ram] step 84850: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22530.5s] [train] 84850/90000 loss=0.0790 arrow=0.0028 lr=5.00e-05 elapsed=373.0m
+[22571.3s] [ram] step 84900: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22571.3s] [train] 84900/90000 loss=0.0738 arrow=0.0031 lr=5.00e-05 elapsed=373.7m
+[22612.0s] [ram] step 84950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22612.0s] [train] 84950/90000 loss=0.0778 arrow=0.0030 lr=5.00e-05 elapsed=374.3m
+[22653.2s] [ram] step 85000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22653.2s] [train] 85000/90000 loss=0.0806 arrow=0.0033 lr=5.00e-05 elapsed=375.0m
+[22654.3s] [ram] after checkpoint 85000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22695.3s] [ram] step 85050: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22695.3s] [train] 85050/90000 loss=0.0795 arrow=0.0026 lr=5.00e-05 elapsed=375.7m
+[22736.2s] [ram] step 85100: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22736.2s] [train] 85100/90000 loss=0.0852 arrow=0.0030 lr=5.00e-05 elapsed=376.4m
+[22777.0s] [ram] step 85150: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22777.0s] [train] 85150/90000 loss=0.0830 arrow=0.0045 lr=5.00e-05 elapsed=377.1m
+[22817.6s] [ram] step 85200: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22817.6s] [train] 85200/90000 loss=0.0828 arrow=0.0030 lr=5.00e-05 elapsed=377.8m
+[22858.9s] [ram] step 85250: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22858.9s] [train] 85250/90000 loss=0.0829 arrow=0.0030 lr=5.00e-05 elapsed=378.5m
+[22899.6s] [ram] step 85300: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22899.6s] [train] 85300/90000 loss=0.0856 arrow=0.0078 lr=5.00e-05 elapsed=379.1m
+[22940.4s] [ram] step 85350: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[22940.4s] [train] 85350/90000 loss=0.0755 arrow=0.0032 lr=5.00e-05 elapsed=379.8m
+[22980.8s] [ram] step 85400: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[22980.8s] [train] 85400/90000 loss=0.0797 arrow=0.0032 lr=5.00e-05 elapsed=380.5m
+[23021.4s] [ram] step 85450: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23021.4s] [train] 85450/90000 loss=0.0725 arrow=0.0030 lr=5.00e-05 elapsed=381.2m
+[23062.2s] [ram] step 85500: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[23062.2s] [train] 85500/90000 loss=0.0829 arrow=0.0034 lr=5.00e-05 elapsed=381.9m
+[23102.8s] [ram] step 85550: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[23102.8s] [train] 85550/90000 loss=0.0758 arrow=0.0030 lr=5.00e-05 elapsed=382.5m
+[23143.5s] [ram] step 85600: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[23143.5s] [train] 85600/90000 loss=0.0747 arrow=0.0023 lr=5.00e-05 elapsed=383.2m
+[23184.2s] [ram] step 85650: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23184.2s] [train] 85650/90000 loss=0.0802 arrow=0.0035 lr=5.00e-05 elapsed=383.9m
+[23224.7s] [ram] step 85700: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23224.7s] [train] 85700/90000 loss=0.0786 arrow=0.0025 lr=5.00e-05 elapsed=384.6m
+[23265.5s] [ram] step 85750: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23265.5s] [train] 85750/90000 loss=0.0776 arrow=0.0031 lr=5.00e-05 elapsed=385.2m
+[23306.2s] [ram] step 85800: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23306.2s] [train] 85800/90000 loss=0.0748 arrow=0.0025 lr=5.00e-05 elapsed=385.9m
+[23346.8s] [ram] step 85850: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23346.8s] [train] 85850/90000 loss=0.0846 arrow=0.0026 lr=5.00e-05 elapsed=386.6m
+[23387.5s] [ram] step 85900: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23387.5s] [train] 85900/90000 loss=0.0784 arrow=0.0023 lr=5.00e-05 elapsed=387.3m
+[23428.4s] [ram] step 85950: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23428.4s] [train] 85950/90000 loss=0.0790 arrow=0.0033 lr=5.00e-05 elapsed=388.0m
+[23469.6s] [ram] step 86000: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23469.6s] [train] 86000/90000 loss=0.0721 arrow=0.0026 lr=5.00e-05 elapsed=388.6m
+[23470.7s] [ram] after checkpoint 86000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[23511.6s] [ram] step 86050: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23511.6s] [train] 86050/90000 loss=0.0794 arrow=0.0030 lr=5.00e-05 elapsed=389.3m
+[23552.2s] [ram] step 86100: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23552.2s] [train] 86100/90000 loss=0.0833 arrow=0.0026 lr=5.00e-05 elapsed=390.0m
+[23592.9s] [ram] step 86150: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23592.9s] [train] 86150/90000 loss=0.0746 arrow=0.0022 lr=5.00e-05 elapsed=390.7m
+[23633.7s] [ram] step 86200: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23633.7s] [train] 86200/90000 loss=0.0752 arrow=0.0027 lr=5.00e-05 elapsed=391.4m
+[23674.6s] [ram] step 86250: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23674.6s] [train] 86250/90000 loss=0.0810 arrow=0.0029 lr=5.00e-05 elapsed=392.1m
+[23715.4s] [ram] step 86300: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23715.4s] [train] 86300/90000 loss=0.0848 arrow=0.0023 lr=5.00e-05 elapsed=392.7m
+[23756.6s] [ram] step 86350: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23756.6s] [train] 86350/90000 loss=0.0818 arrow=0.0032 lr=5.00e-05 elapsed=393.4m
+[23797.6s] [ram] step 86400: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23797.6s] [train] 86400/90000 loss=0.0795 arrow=0.0032 lr=5.00e-05 elapsed=394.1m
+[23838.5s] [ram] step 86450: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23838.5s] [train] 86450/90000 loss=0.0794 arrow=0.0024 lr=5.00e-05 elapsed=394.8m
+[23879.5s] [ram] step 86500: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23879.5s] [train] 86500/90000 loss=0.0796 arrow=0.0027 lr=5.00e-05 elapsed=395.5m
+[23920.0s] [ram] step 86550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23920.0s] [train] 86550/90000 loss=0.0808 arrow=0.0043 lr=5.00e-05 elapsed=396.1m
+[23960.6s] [ram] step 86600: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[23960.6s] [train] 86600/90000 loss=0.0810 arrow=0.0028 lr=5.00e-05 elapsed=396.8m
+[24001.5s] [ram] step 86650: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24001.5s] [train] 86650/90000 loss=0.0738 arrow=0.0029 lr=5.00e-05 elapsed=397.5m
+[24042.1s] [ram] step 86700: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24042.1s] [train] 86700/90000 loss=0.0760 arrow=0.0022 lr=5.00e-05 elapsed=398.2m
+[24082.9s] [ram] step 86750: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24082.9s] [train] 86750/90000 loss=0.0790 arrow=0.0033 lr=5.00e-05 elapsed=398.9m
+[24123.5s] [ram] step 86800: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24123.5s] [train] 86800/90000 loss=0.0772 arrow=0.0024 lr=5.00e-05 elapsed=399.5m
+[24164.1s] [ram] step 86850: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24164.1s] [train] 86850/90000 loss=0.0754 arrow=0.0024 lr=5.00e-05 elapsed=400.2m
+[24205.0s] [ram] step 86900: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24205.0s] [train] 86900/90000 loss=0.0743 arrow=0.0028 lr=5.00e-05 elapsed=400.9m
+[24245.7s] [ram] step 86950: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24245.7s] [train] 86950/90000 loss=0.0771 arrow=0.0029 lr=5.00e-05 elapsed=401.6m
+[24286.5s] [ram] step 87000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24286.5s] [train] 87000/90000 loss=0.0778 arrow=0.0036 lr=5.00e-05 elapsed=402.3m
+[24287.7s] [ram] after checkpoint 87000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24328.3s] [ram] step 87050: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24328.3s] [train] 87050/90000 loss=0.0811 arrow=0.0028 lr=5.00e-05 elapsed=403.0m
+[24369.2s] [ram] step 87100: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24369.2s] [train] 87100/90000 loss=0.0789 arrow=0.0028 lr=5.00e-05 elapsed=403.6m
+[24409.7s] [ram] step 87150: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24409.7s] [train] 87150/90000 loss=0.0729 arrow=0.0025 lr=5.00e-05 elapsed=404.3m
+[24450.1s] [ram] step 87200: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24450.1s] [train] 87200/90000 loss=0.0744 arrow=0.0030 lr=5.00e-05 elapsed=405.0m
+[24490.8s] [ram] step 87250: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24490.8s] [train] 87250/90000 loss=0.0769 arrow=0.0029 lr=5.00e-05 elapsed=405.7m
+[24531.5s] [ram] step 87300: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24531.5s] [train] 87300/90000 loss=0.0802 arrow=0.0031 lr=5.00e-05 elapsed=406.3m
+[24572.0s] [ram] step 87350: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24572.0s] [train] 87350/90000 loss=0.0827 arrow=0.0024 lr=5.00e-05 elapsed=407.0m
+[24612.5s] [ram] step 87400: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24612.5s] [train] 87400/90000 loss=0.0800 arrow=0.0027 lr=5.00e-05 elapsed=407.7m
+[24653.3s] [ram] step 87450: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24653.3s] [train] 87450/90000 loss=0.0773 arrow=0.0029 lr=5.00e-05 elapsed=408.4m
+[24694.3s] [ram] step 87500: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24694.3s] [train] 87500/90000 loss=0.0766 arrow=0.0030 lr=5.00e-05 elapsed=409.1m
+[24734.8s] [ram] step 87550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24734.8s] [train] 87550/90000 loss=0.0761 arrow=0.0025 lr=5.00e-05 elapsed=409.7m
+[24775.4s] [ram] step 87600: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24775.4s] [train] 87600/90000 loss=0.0766 arrow=0.0025 lr=5.00e-05 elapsed=410.4m
+[24816.2s] [ram] step 87650: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24816.2s] [train] 87650/90000 loss=0.0819 arrow=0.0028 lr=5.00e-05 elapsed=411.1m
+[24857.0s] [ram] step 87700: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24857.0s] [train] 87700/90000 loss=0.0824 arrow=0.0027 lr=5.00e-05 elapsed=411.8m
+[24897.8s] [ram] step 87750: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[24897.8s] [train] 87750/90000 loss=0.0795 arrow=0.0022 lr=5.00e-05 elapsed=412.4m
+[24938.5s] [ram] step 87800: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24938.5s] [train] 87800/90000 loss=0.0805 arrow=0.0034 lr=5.00e-05 elapsed=413.1m
+[24979.1s] [ram] step 87850: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[24979.1s] [train] 87850/90000 loss=0.0760 arrow=0.0027 lr=5.00e-05 elapsed=413.8m
+[25019.8s] [ram] step 87900: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25019.8s] [train] 87900/90000 loss=0.0758 arrow=0.0035 lr=5.00e-05 elapsed=414.5m
+[25060.5s] [ram] step 87950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25060.5s] [train] 87950/90000 loss=0.0726 arrow=0.0027 lr=5.00e-05 elapsed=415.2m
+[25101.6s] [ram] step 88000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[25101.6s] [train] 88000/90000 loss=0.0834 arrow=0.0027 lr=5.00e-05 elapsed=415.8m
+[25102.8s] [ram] after checkpoint 88000: available=27.81 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[25143.3s] [ram] step 88050: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25143.3s] [train] 88050/90000 loss=0.0711 arrow=0.0027 lr=5.00e-05 elapsed=416.5m
+[25184.3s] [ram] step 88100: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25184.3s] [train] 88100/90000 loss=0.0807 arrow=0.0025 lr=5.00e-05 elapsed=417.2m
+[25225.2s] [ram] step 88150: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25225.2s] [train] 88150/90000 loss=0.0806 arrow=0.0024 lr=5.00e-05 elapsed=417.9m
+[25265.9s] [ram] step 88200: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25265.9s] [train] 88200/90000 loss=0.0778 arrow=0.0033 lr=5.00e-05 elapsed=418.6m
+[25307.0s] [ram] step 88250: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25307.0s] [train] 88250/90000 loss=0.0813 arrow=0.0030 lr=5.00e-05 elapsed=419.3m
+[25347.7s] [ram] step 88300: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25347.7s] [train] 88300/90000 loss=0.0773 arrow=0.0024 lr=5.00e-05 elapsed=419.9m
+[25388.3s] [ram] step 88350: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25388.3s] [train] 88350/90000 loss=0.0804 arrow=0.0031 lr=5.00e-05 elapsed=420.6m
+[25429.0s] [ram] step 88400: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25429.0s] [train] 88400/90000 loss=0.0758 arrow=0.0021 lr=5.00e-05 elapsed=421.3m
+[25469.5s] [ram] step 88450: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25469.5s] [train] 88450/90000 loss=0.0822 arrow=0.0055 lr=5.00e-05 elapsed=422.0m
+[25510.0s] [ram] step 88500: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25510.0s] [train] 88500/90000 loss=0.0739 arrow=0.0023 lr=5.00e-05 elapsed=422.6m
+[25550.7s] [ram] step 88550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25550.7s] [train] 88550/90000 loss=0.0759 arrow=0.0025 lr=5.00e-05 elapsed=423.3m
+[25591.3s] [ram] step 88600: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25591.3s] [train] 88600/90000 loss=0.0741 arrow=0.0034 lr=5.00e-05 elapsed=424.0m
+[25631.7s] [ram] step 88650: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25631.7s] [train] 88650/90000 loss=0.0792 arrow=0.0036 lr=5.00e-05 elapsed=424.7m
+[25672.4s] [ram] step 88700: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25672.4s] [train] 88700/90000 loss=0.0803 arrow=0.0038 lr=5.00e-05 elapsed=425.4m
+[25713.4s] [ram] step 88750: available=27.79 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25713.4s] [train] 88750/90000 loss=0.0747 arrow=0.0024 lr=5.00e-05 elapsed=426.0m
+[25754.4s] [ram] step 88800: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[25754.4s] [train] 88800/90000 loss=0.0812 arrow=0.0036 lr=5.00e-05 elapsed=426.7m
+[25795.1s] [ram] step 88850: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[25795.1s] [train] 88850/90000 loss=0.0802 arrow=0.0031 lr=5.00e-05 elapsed=427.4m
+[25835.6s] [ram] step 88900: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25835.6s] [train] 88900/90000 loss=0.0770 arrow=0.0025 lr=5.00e-05 elapsed=428.1m
+[25876.3s] [ram] step 88950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25876.3s] [train] 88950/90000 loss=0.0769 arrow=0.0048 lr=5.00e-05 elapsed=428.8m
+[25917.5s] [ram] step 89000: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25917.5s] [train] 89000/90000 loss=0.0803 arrow=0.0026 lr=5.00e-05 elapsed=429.4m
+[25918.7s] [ram] after checkpoint 89000: available=27.80 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[25959.5s] [ram] step 89050: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[25959.5s] [train] 89050/90000 loss=0.0830 arrow=0.0028 lr=5.00e-05 elapsed=430.1m
+[26000.1s] [ram] step 89100: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26000.1s] [train] 89100/90000 loss=0.0845 arrow=0.0050 lr=5.00e-05 elapsed=430.8m
+[26041.1s] [ram] step 89150: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26041.1s] [train] 89150/90000 loss=0.0758 arrow=0.0023 lr=5.00e-05 elapsed=431.5m
+[26081.9s] [ram] step 89200: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26081.9s] [train] 89200/90000 loss=0.0791 arrow=0.0028 lr=5.00e-05 elapsed=432.2m
+[26122.9s] [ram] step 89250: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26122.9s] [train] 89250/90000 loss=0.0836 arrow=0.0028 lr=5.00e-05 elapsed=432.9m
+[26163.5s] [ram] step 89300: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26163.5s] [train] 89300/90000 loss=0.0756 arrow=0.0031 lr=5.00e-05 elapsed=433.5m
+[26204.1s] [ram] step 89350: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26204.1s] [train] 89350/90000 loss=0.0767 arrow=0.0029 lr=5.00e-05 elapsed=434.2m
+[26244.8s] [ram] step 89400: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26244.8s] [train] 89400/90000 loss=0.0790 arrow=0.0026 lr=5.00e-05 elapsed=434.9m
+[26285.4s] [ram] step 89450: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26285.4s] [train] 89450/90000 loss=0.0790 arrow=0.0031 lr=5.00e-05 elapsed=435.6m
+[26326.2s] [ram] step 89500: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26326.2s] [train] 89500/90000 loss=0.0730 arrow=0.0028 lr=5.00e-05 elapsed=436.3m
+[26366.7s] [ram] step 89550: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26366.7s] [train] 89550/90000 loss=0.0795 arrow=0.0037 lr=5.00e-05 elapsed=436.9m
+[26407.1s] [ram] step 89600: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26407.1s] [train] 89600/90000 loss=0.0778 arrow=0.0034 lr=5.00e-05 elapsed=437.6m
+[26447.8s] [ram] step 89650: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26447.8s] [train] 89650/90000 loss=0.0819 arrow=0.0026 lr=5.00e-05 elapsed=438.3m
+[26488.2s] [ram] step 89700: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[26488.2s] [train] 89700/90000 loss=0.0682 arrow=0.0022 lr=5.00e-05 elapsed=439.0m
+[26529.0s] [ram] step 89750: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26529.0s] [train] 89750/90000 loss=0.0791 arrow=0.0025 lr=5.00e-05 elapsed=439.6m
+[26569.5s] [ram] step 89800: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26569.5s] [train] 89800/90000 loss=0.0771 arrow=0.0025 lr=5.00e-05 elapsed=440.3m
+[26610.2s] [ram] step 89850: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26610.2s] [train] 89850/90000 loss=0.0775 arrow=0.0030 lr=5.00e-05 elapsed=441.0m
+[26651.1s] [ram] step 89900: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26651.1s] [train] 89900/90000 loss=0.0808 arrow=0.0029 lr=5.00e-05 elapsed=441.7m
+[26692.2s] [ram] step 89950: available=27.78 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26692.2s] [train] 89950/90000 loss=0.0817 arrow=0.0027 lr=5.00e-05 elapsed=442.4m
+[26733.1s] [ram] step 90000: available=27.77 GB | system_used=11.4% | main_rss=2.86 GB | children_rss=0.00 GB
+[26733.1s] [train] 90000/90000 loss=0.0843 arrow=0.0039 lr=5.00e-05 elapsed=443.0m
+[26734.3s] [ram] after checkpoint 90000: available=27.79 GB | system_used=11.3% | main_rss=2.86 GB | children_rss=0.00 GB
+[26735.5s] Running common-validation inference...
+[26735.7s] [val] 1/188
+[26735.9s] [val] 2/188
+[26736.0s] [val] 3/188
+[26739.3s] [val] 25/188
+[26742.9s] [val] 50/188
+[26746.5s] [val] 75/188
+[26750.1s] [val] 100/188
+[26753.7s] [val] 125/188
+[26757.4s] [val] 150/188
+[26760.9s] [val] 175/188
+[26765.4s] threshold=0.30 | Link F1=0.9922 | Node F1=0.9992 | nSEE=0.0080
+[26767.1s] threshold=0.40 | Link F1=0.9929 | Node F1=0.9992 | nSEE=0.0075
+[26768.7s] threshold=0.50 | Link F1=0.9932 | Node F1=0.9992 | nSEE=0.0072
+[26770.4s] threshold=0.60 | Link F1=0.9936 | Node F1=0.9992 | nSEE=0.0067
+[26772.1s] threshold=0.70 | Link F1=0.9936 | Node F1=0.9992 | nSEE=0.0067
+[26773.7s] threshold=0.80 | Link F1=0.9939 | Node F1=0.9992 | nSEE=0.0064
+[26773.7s] Selected score threshold: 0.8
+[26777.2s]
+[26777.2s] ========================================================================
+[26777.2s] DIRECTION-SEMANTICS VALIDATION CHECK
+[26777.2s] ========================================================================
+[26777.2s] Audited convention      : Link F1=0.9939 | Endpoint L2=4.498
+[26777.2s] Intentionally reversed  : Link F1=0.1405 | Endpoint L2=80.106
+[26778.8s] Fixed threshold 0.70: Link F1=0.9936 | Node F1=0.9992 | nSEE=0.0067
+[26779.4s] [test] 1/450
+[26779.4s] [test] 2/450
+[26779.7s] [test] 3/450
+[26782.7s] [test] 25/450
+[26786.1s] [test] 50/450
+[26789.6s] [test] 75/450
+[26793.2s] [test] 100/450
+[26796.8s] [test] 125/450
+[26800.6s] [test] 150/450
+[26804.5s] [test] 175/450
+[26808.3s] [test] 200/450
+[26812.1s] [test] 225/450
+[26816.0s] [test] 250/450
+[26819.8s] [test] 275/450
+[26823.4s] [test] 300/450
+[26827.0s] [test] 325/450
+[26830.6s] [test] 350/450
+[26834.2s] [test] 375/450
+[26837.8s] [test] 400/450
+[26841.4s] [test] 425/450
+[26845.0s] [test] 450/450
+[26850.8s]
+[26850.8s] ========================================================================
+[26850.8s] ARROW R-CNN REIMPLEMENTATION — COMMON PROTOCOL
+[26850.8s] ========================================================================
+[26850.8s] {
+[26850.8s] "group": "overall",
+[26850.8s] "num_images": 450,
+[26850.8s] "node_precision": 0.9993299832495812,
+[26850.8s] "node_recall": 0.9996648793565683,
+[26850.8s] "node_f1": 0.9994974032501257,
+[26850.8s] "mBox_IoU_macro": 0.971515449924183,
+[26850.8s] "mBox_IoU_pooled": 0.9712100272753214,
+[26850.8s] "link_precision": 0.9723935389133627,
+[26850.8s] "link_recall": 0.979296066252588,
+[26850.8s] "link_f1": 0.9758325965222517,
+[26850.8s] "nSEE": 0.020728866098800737,
+[26850.8s] "endpoint_l2_pooled_mean": 5.230319585955591,
+[26850.8s] "endpoint_l2_median": 2.656841282329765,
+[26850.8s] "endpoint_l2_p90": 9.88136621629343,
+[26850.8s] "endpoint_coverage": 0.979296066252588,
+[26850.8s] "loop_recall": 0.9523809523809523,
+[26850.8s] "branch_recall": 0.9764216366158114,
+[26850.8s] "tdrr": 0.8555555555555555
+[26850.8s] }
+[26850.8s]
+[26850.8s] BY FAMILY
+[26850.8s] [
+[26850.8s] {
+[26850.8s] "group": "fa",
+[26850.8s] "num_images": 83,
+[26850.8s] "node_precision": 0.9975609756097561,
+[26850.8s] "node_recall": 1.0,
+[26850.8s] "node_f1": 0.9987789987789988,
+[26850.8s] "mBox_IoU_macro": 0.9761687668844699,
+[26850.8s] "mBox_IoU_pooled": 0.9760569369145842,
+[26850.8s] "link_precision": 0.974587039390089,
+[26850.8s] "link_recall": 0.9758269720101781,
+[26850.8s] "link_f1": 0.9752066115702479,
+[26850.8s] "nSEE": 0.029299693927617384,
+[26850.8s] "endpoint_l2_pooled_mean": 6.474611989584415,
+[26850.8s] "endpoint_l2_median": 3.508182189940727,
+[26850.8s] "endpoint_l2_p90": 10.467685901062833,
+[26850.8s] "endpoint_coverage": 0.9758269720101781,
+[26850.8s] "loop_recall": 0.9523809523809523,
+[26850.8s] "branch_recall": 0.9712837837837838,
+[26850.8s] "tdrr": 0.7710843373493976
+[26850.8s] },
+[26850.8s] {
+[26850.8s] "group": "fca",
+[26850.8s] "num_images": 171,
+[26850.8s] "node_precision": 0.9991922455573505,
+[26850.8s] "node_recall": 0.9991922455573505,
+[26850.8s] "node_f1": 0.9991922455573505,
+[26850.8s] "mBox_IoU_macro": 0.966867999197967,
+[26850.8s] "mBox_IoU_pooled": 0.9670375296737925,
+[26850.8s] "link_precision": 0.946219797349961,
+[26850.8s] "link_recall": 0.9634920634920635,
+[26850.8s] "link_f1": 0.9547778214707038,
+[26850.8s] "nSEE": 0.03549376886666188,
+[26850.8s] "endpoint_l2_pooled_mean": 6.688130114268985,
+[26850.8s] "endpoint_l2_median": 3.154463031047811,
+[26850.8s] "endpoint_l2_p90": 12.637094764564495,
+[26850.8s] "endpoint_coverage": 0.9634920634920635,
+[26850.8s] "loop_recall": 0.0,
+[26850.8s] "branch_recall": 0.9712918660287081,
+[26850.8s] "tdrr": 0.7660818713450293
+[26850.8s] },
+[26850.8s] {
+[26850.8s] "group": "fcb",
+[26850.8s] "num_images": 196,
+[26850.8s] "node_precision": 1.0,
+[26850.8s] "node_recall": 1.0,
+[26850.8s] "node_f1": 1.0,
+[26850.8s] "mBox_IoU_macro": 0.9735995762837705,
+[26850.8s] "mBox_IoU_pooled": 0.9735877337006265,
+[26850.8s] "link_precision": 0.9962546816479401,
+[26850.8s] "link_recall": 0.9962546816479401,
+[26850.8s] "link_f1": 0.9962546816479401,
+[26850.8s] "nSEE": 0.004217758531984223,
+[26850.8s] "endpoint_l2_pooled_mean": 3.1820833040339616,
+[26850.8s] "endpoint_l2_median": 1.8754717415997106,
+[26850.8s] "endpoint_l2_p90": 6.983696254621866,
+[26850.8s] "endpoint_coverage": 0.9962546816479401,
+[26850.8s] "loop_recall": 0.0,
+[26850.8s] "branch_recall": 0.9884259259259259,
+[26850.8s] "tdrr": 0.9693877551020408
+[26850.8s] }
+[26850.8s] ]
+[26854.9s]
+[26854.9s] ========================================================================
+[26854.9s] FIXED PAPER-REFERENCE THRESHOLD = 0.70
+[26854.9s] ========================================================================
+[26854.9s] {
+[26854.9s] "group": "overall",
+[26854.9s] "num_images": 450,
+[26854.9s] "node_precision": 0.9993299832495812,
+[26854.9s] "node_recall": 0.9996648793565683,
+[26854.9s] "node_f1": 0.9994974032501257,
+[26854.9s] "mBox_IoU_macro": 0.971515449924183,
+[26854.9s] "mBox_IoU_pooled": 0.9712100272753214,
+[26854.9s] "link_precision": 0.9701230228471002,
+[26854.9s] "link_recall": 0.9795918367346939,
+[26854.9s] "link_f1": 0.9748344370860927,
+[26854.9s] "nSEE": 0.02150135698240273,
+[26854.9s] "endpoint_l2_pooled_mean": 5.2527559126301,
+[26854.9s] "endpoint_l2_median": 2.656904806290652,
+[26854.9s] "endpoint_l2_p90": 9.89851903272864,
+[26854.9s] "endpoint_coverage": 0.9795918367346939,
+[26854.9s] "loop_recall": 0.9523809523809523,
+[26854.9s] "branch_recall": 0.9771151178918169,
+[26854.9s] "tdrr": 0.8511111111111112
+[26854.9s] }
+[26855.0s]
+[26855.5s] Debug overlays: {'fa': 3, 'fca': 3, 'fcb': 3}
+[26855.6s]
+[26855.6s] Arrow R-CNN common-protocol baseline finished.
+[26855.6s] Selected score threshold: 0.8
+[26855.6s] Run mode     : train
+[26855.6s] Endpoint convention: slot0_tail_slot1_head
+[26855.6s] GPU count available: 2
+[26855.6s] Multi-GPU training used: False
+[26855.6s] Global physical batch: 2
+[26855.6s] Per-GPU batch chunks: [2]
+[26855.6s] DataLoader workers: 0
+[26855.6s] [ram] final: available=27.77 GB | system_used=11.4% | main_rss=2.87 GB | children_rss=0.00 GB

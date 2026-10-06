@@ -1,0 +1,264 @@
+# Publication execution log: parameter sensitivity
+# Source: supplied saved Stage-2 execution log plus manuscript-reported Stage-1 summary.
+# Host-specific paths/storage/debugger/export chatter has been removed.
+# Run-derived Stage-2 values are preserved. Manuscript-reference values are labeled explicitly.
+
+MANUSCRIPT-REPORTED REFERENCE PROFILE
+-------------------------------------
+Node F1                         : 98.57%
+Matched Node Box IoU (macro)   : 82.71%
+Soft-clDice (macro)            : 96.72%
+Endpoint L2 (macro)            : 3.77 px
+Link F1                        : 92.49%
+nSEE                           : 0.090
+Loop-back recall               : 95.24%
+Decision-branch recall         : 94.04%
+Matched-link coverage          : 94.94%
+Valid-endpoint coverage        : 94.94%
+Pooled matched-link Soft-clDice: 99.35%
+Pooled endpoint L2 mean        : 3.44 px
+
+MANUSCRIPT-REPORTED STAGE-1 GROUP SUMMARY
+-----------------------------------------
+Reference Link F1              : 92.494%
+Reference precision / recall   : 90.169% / 94.942%
+Reference nSEE                 : 0.090
+G1 relaxed Link F1             : 92.526%
+G1 strict Link F1 / nSEE       : 86.490% / 0.191
+All-relaxed Link F1            : 92.011%
+All-strict Link F1 / nSEE      : 82.628% / 0.240
+Max |Delta Link F1|: G2=0.224 pp, G3=0.900 pp, G4=0.027 pp, G5=0.266 pp
+
+MANUSCRIPT-REPORTED MECHANISTIC COUNTS (NODE-EXTENT STRICT)
+-----------------------------------------------------------
+Pass-I candidates              : 6664 -> 5287
+Final edges                    : 3560 -> 3405
+Endpoint repairs               : 317 -> 912
+
+SAVED STAGE-2 RUN TRACE
+-----------------------
+[10.0s] 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+[10.0s] 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+[10.7s] 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+[10.7s] 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+[29.4s] 
+[29.4s] Environment
+[29.4s] ------------------------------------------------------------------------
+[29.4s] CUDA available : True
+[29.4s] GPU count      : 2
+[29.4s] GPU 0         : Tesla T4
+[29.4s] GPU 1         : Tesla T4
+[29.4s] CPU cores      : 4
+[29.4s] CPU workers    : 4
+[29.4s] Dataset ready  : True
+[29.4s] Train graph    : False
+[29.4s] Train node     : False
+[43.0s] Resolved run mode: full_inference
+[43.4s] Discovered 450 inference samples.
+[43.4s] [worker 0] loading graph-evidence model on cuda:0
+[43.4s] [worker 1] loading graph-evidence model on cuda:1
+[44.0s] [asm-load] torch.load CPU done on cuda:0 in 0.59s
+[44.0s] [asm-load] torch.load CPU done on cuda:1 in 0.60s
+[44.0s] [asm-load] built DiagramUNet on CPU in 0.06s
+[44.0s] [asm-load] built DiagramUNet on CPU in 0.07s
+[44.0s] [asm-load] load_state_dict done on cuda:0 in 0.01s
+[44.0s] [asm-load] load_state_dict done on cuda:1 in 0.01s
+[44.5s] [asm-load] moved to cuda:0 in 0.42s; total=1.09s
+[44.5s] [asm-load] moved to cuda:1 in 0.42s; total=1.09s
+[44.5s] [worker 0] loading plain ResNet34 node model on cuda:0
+[44.5s] [worker 1] loading plain ResNet34 node model on cuda:1
+[48.7s] [worker 1] 1/225 fa/test/writer018_fa_002.png
+[48.7s] [worker 0] 1/225 fa/test/writer018_fa_001.png
+[189.5s] [worker 0] completed in 140.71s
+[189.5s] [worker 0] 2/225 fa/test/writer018_fa_003.png
+[288.6s] [worker 1] completed in 239.82s
+[288.6s] [worker 1] 2/225 fa/test/writer018_fa_004.png
+[341.4s] [worker 0] completed in 151.90s
+[341.4s] [worker 0] 3/225 fa/test/writer018_fa_005.png
+[425.6s] [worker 1] completed in 137.00s
+[425.6s] [worker 1] 3/225 fa/test/writer018_fa_006.png
+[606.1s] [worker 1] completed in 180.54s
+[778.9s] [worker 0] completed in 437.47s
+[1814.9s] [worker 1] 10/225 fa/test/writer019_fa_008.png
+[2078.1s] [worker 0] 10/225 fa/test/writer019_fa_007.png
+[2138.9s] [worker 1] completed in 324.05s
+[2221.4s] [worker 0] completed in 143.37s
+[4193.9s] [worker 1] 20/225 fa/test/writer021_fa_004.png
+[4249.6s] [worker 0] 20/225 fa/test/writer021_fa_003.png
+[4274.4s] [worker 1] completed in 80.52s
+[4393.1s] [worker 0] completed in 143.53s
+[6267.6s] [worker 1] 30/225 fa/test/writer022_fa_012.png
+[6450.5s] [worker 1] completed in 182.89s
+[6752.8s] [worker 0] 30/225 fa/test/writer022_fa_011.png
+[6859.1s] [worker 0] completed in 106.40s
+[8333.3s] [worker 1] 40/225 fa/test/writer024_fa_009.png
+[8637.8s] [worker 0] 40/225 fa/test/writer024_fa_008.png
+[8680.8s] [worker 1] completed in 347.49s
+[8941.3s] [worker 0] completed in 303.43s
+[9546.5s] [worker 1] 50/225 fca/test/writer12_1b.png
+[9662.9s] [worker 1] completed in 116.36s
+[10036.2s] [worker 0] 50/225 fca/test/writer12_14b.png
+[10219.1s] [worker 0] completed in 182.86s
+[10659.0s] [worker 1] 60/225 fca/test/writer15_9b.png
+[10716.1s] [worker 1] completed in 57.15s
+[10960.1s] [worker 0] 60/225 fca/test/writer15_8b.png
+[11053.1s] [worker 0] completed in 93.01s
+[11810.4s] [worker 1] 70/225 fca/test/writer17_2b.png
+[11845.3s] [worker 1] completed in 34.85s
+[11971.6s] [worker 0] 70/225 fca/test/writer17_1b.png
+[12056.0s] [worker 0] completed in 84.33s
+[12767.0s] [worker 1] 80/225 fca/test/writer18_8b.png
+[12849.6s] [worker 1] completed in 82.66s
+[13238.0s] [worker 0] 80/225 fca/test/writer18_7b.png
+[13441.1s] [worker 0] completed in 203.12s
+[13971.3s] [worker 1] 90/225 fca/test/writer26_13b.png
+[14076.2s] [worker 1] completed in 104.96s
+[14223.8s] [worker 0] 90/225 fca/test/writer26_12b.png
+[14328.3s] [worker 0] completed in 104.55s
+[14986.8s] [worker 1] 100/225 fca/test/writer28_6b.png
+[15073.5s] [worker 1] completed in 86.76s
+[15200.6s] [worker 0] 100/225 fca/test/writer28_4b.png
+[15294.8s] [worker 0] completed in 94.03s
+[15738.8s] [worker 1] 110/225 fca/test/writer32_12b.png
+[15847.2s] [worker 1] completed in 108.48s
+[16423.0s] [worker 0] 110/225 fca/test/writer32_11b.png
+[16477.8s] [worker 0] completed in 54.83s
+[16760.7s] [worker 1] 120/225 fca/test/writer5_8b.png
+[16829.9s] [worker 1] completed in 69.21s
+[17405.2s] [worker 0] 120/225 fca/test/writer5_6b.png
+[17537.2s] [worker 0] completed in 132.04s
+[17851.4s] [worker 1] 130/225 fcb/test/writer017_fc_003b.png
+[17889.9s] [worker 1] completed in 38.46s
+[18265.2s] [worker 0] 130/225 fcb/test/writer017_fc_003.png
+[18301.5s] [worker 0] completed in 36.25s
+[18548.6s] [worker 1] 140/225 fcb/test/writer017_fc_019.png
+[18604.6s] [worker 1] completed in 56.02s
+[19008.7s] [worker 0] 140/225 fcb/test/writer017_fc_018.png
+[19113.0s] [worker 0] completed in 104.26s
+[19238.3s] [worker 1] 150/225 fcb/test/writer018_fc_012b.png
+[19319.6s] [worker 1] completed in 81.31s
+[19693.9s] [worker 0] 150/225 fcb/test/writer018_fc_012.png
+[19769.6s] [worker 0] completed in 75.68s
+[20048.8s] [worker 1] 160/225 fcb/test/writer019_fc_008b.png
+[20135.7s] [worker 1] completed in 86.93s
+[20472.9s] [worker 0] 160/225 fcb/test/writer019_fc_008.png
+[20549.2s] [worker 0] completed in 76.37s
+[20865.1s] [worker 1] 170/225 fcb/test/writer020_fc_001b.png
+[20945.1s] [worker 1] completed in 80.05s
+[21299.2s] [worker 0] 170/225 fcb/test/writer020_fc_001.png
+[21384.8s] [worker 0] completed in 85.63s
+[21534.3s] [worker 1] 180/225 fcb/test/writer020_fc_015b.png
+[21606.9s] [worker 1] completed in 72.62s
+[21943.8s] [worker 0] 180/225 fcb/test/writer020_fc_015.png
+[22001.5s] [worker 0] completed in 57.73s
+[22253.2s] [worker 1] 190/225 fcb/test/writer021_fc_010b.png
+[22292.3s] [worker 1] completed in 39.06s
+[22675.4s] [worker 0] 190/225 fcb/test/writer021_fc_010.png
+[22721.5s] [worker 0] completed in 46.07s
+[23089.9s] [worker 1] 200/225 fcb/test/writer022_fc_003b.png
+[23128.7s] [worker 1] completed in 38.84s
+[23473.3s] [worker 0] 200/225 fcb/test/writer022_fc_003.png
+[23508.7s] [worker 0] completed in 35.31s
+[23828.5s] [worker 1] 210/225 fcb/test/writer022_fc_019.png
+[23887.2s] [worker 1] completed in 58.67s
+[24222.5s] [worker 0] 210/225 fcb/test/writer022_fc_018.png
+[24327.2s] [worker 0] completed in 104.78s
+[24494.3s] [worker 1] 220/225 fcb/test/writer023_fc_012b.png
+[24569.5s] [worker 1] completed in 75.13s
+[24865.5s] [worker 0] 220/225 fcb/test/writer023_fc_012.png
+[24930.2s] [worker 0] completed in 64.73s
+[25238.8s] 
+[25238.8s] ========================================================================
+
+[25239.8s] REVIEWER 1 PARAMETER SENSITIVITY — STAGE 2
+[25239.8s] ========================================================================================
+[25239.8s] # Reviewer 1 — Parameter Sensitivity Stage-2 Report**Drilled-down group:** G1 — Evidence admission.  **Perturbation:** ±20% in behavioural space.  **Modes run:** relaxed, strict.  **Metric profile:** `revision`.## 1. Experimental designStage 1 identified evidence admission as the only functional group requiring parameter-level drill-down. Stage 2 therefore perturbs one G1 parameter at a time while all other learned predictions and deterministic assembler parameters remain at the submitted configuration. For minimum evidence thresholds, relaxation lowers the threshold and strictness raises it. Image-adaptive thresholds are perturbed only after their per-image adaptive value is computed. The graph-evidence and ResNet34 forward passes are shared across all variants for each image.## 2. G1 parameters tested| Parameter | Scope | Nominal | Relaxed factor | Strict factor | Role |
+[25239.8s] | --- | --- | --- | --- | --- | --- |
+[25239.8s] | node_extent_thresh | effective | adaptive per image | 0.800 | 1.200 | Node-region evidence threshold after adaptive calibration. |
+[25239.8s] | node_center_thresh | effective | adaptive per image | 0.800 | 1.200 | Node-center evidence threshold after adaptive calibration. |
+[25239.8s] | head_thresh | effective | adaptive per image | 0.800 | 1.200 | Arrow-head heatmap admission threshold. |
+[25239.8s] | tail_thresh | effective | adaptive per image | 0.800 | 1.200 | Arrow-tail heatmap admission threshold. |
+[25239.8s] | shaft_thresh | effective | adaptive per image | 0.800 | 1.200 | Shaft evidence threshold used to create walkable support. |
+[25239.8s] | skeleton_thresh | effective | adaptive per image | 0.800 | 1.200 | Skeleton evidence threshold used to create walkable support. |
+[25239.8s] | support_thresh | effective | adaptive per image | 0.800 | 1.200 | Fused support threshold after adaptive calibration. |
+[25239.8s] | min_arrow_confidence | direct | 0.320 | 0.800 | 1.200 | Minimum confidence for first-pass candidate selection. |## 3. Overall Stage-2 results| Parameter | Mode | Link F1 | Δ Link F1 | Precision | Recall | nSEE | Δ nSEE | Loop Rec. | Branch Rec. |
+[25239.8s] | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+[25239.8s] | baseline | baseline | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | node_extent_thresh | relaxed | 92.592 | 0.098 | 89.800 | 95.563 | 0.084 | -0.007 | 95.238 | 94.313 |
+[25239.8s] | node_extent_thresh | strict | 86.443 | -6.051 | 86.138 | 86.749 | 0.192 | 0.101 | 94.643 | 89.945 |
+[25239.8s] | node_center_thresh | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | node_center_thresh | strict | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | head_thresh | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | head_thresh | strict | 92.518 | 0.025 | 90.242 | 94.913 | 0.090 | -0.000 | 95.238 | 93.967 |
+[25239.8s] | tail_thresh | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | tail_thresh | strict | 92.521 | 0.027 | 90.219 | 94.942 | 0.090 | -0.000 | 95.238 | 94.036 |
+[25239.8s] | shaft_thresh | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | shaft_thresh | strict | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | skeleton_thresh | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | skeleton_thresh | strict | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | support_thresh | relaxed | 92.465 | -0.029 | 90.140 | 94.913 | 0.090 | -0.000 | 95.238 | 93.967 |
+[25239.8s] | support_thresh | strict | 92.432 | -0.062 | 90.157 | 94.824 | 0.091 | 0.001 | 95.238 | 93.828 |
+[25239.8s] | min_arrow_confidence | relaxed | 92.494 | 0.000 | 90.169 | 94.942 | 0.090 | 0.000 | 95.238 | 94.036 |
+[25239.8s] | min_arrow_confidence | strict | 92.518 | 0.025 | 90.242 | 94.913 | 0.090 | -0.000 | 94.643 | 93.967 |## 4. Parameter ranking| parameter | largest_abs_delta_link_f1_pp | condition_for_largest_abs_delta | strict_delta_link_f1_pp | relaxed_delta_link_f1_pp | max_nsee_increase |
+[25239.8s] | --- | --- | --- | --- | --- | --- |
+[25239.8s] | node_extent_thresh | 6.051 | strict | -6.051 | 0.098 | 0.101 |
+[25239.8s] | support_thresh | 0.062 | strict | -0.062 | -0.029 | 0.000 |
+[25239.8s] | tail_thresh | 0.027 | strict | 0.027 | 0.000 | 0.000 |
+[25239.8s] | head_thresh | 0.025 | strict | 0.025 | 0.000 | 0.000 |
+[25239.8s] | min_arrow_confidence | 0.025 | strict | 0.025 | 0.000 | 0.000 |
+[25239.8s] | node_center_thresh | 0.000 | relaxed | 0.000 | 0.000 | 0.000 |
+[25239.8s] | shaft_thresh | 0.000 | relaxed | 0.000 | 0.000 | 0.000 |
+[25239.8s] | skeleton_thresh | 0.000 | relaxed | 0.000 | 0.000 | 0.000 |## 5. Family-wise Link F1| Parameter | Mode | Family | Link F1 | Δ Link F1 | nSEE |
+[25239.8s] | --- | --- | --- | --- | --- | --- |
+[25239.8s] | baseline | baseline | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | baseline | baseline | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | baseline | baseline | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | node_extent_thresh | relaxed | FA | 91.805 | -0.219 | 0.097 |
+[25239.8s] | node_extent_thresh | relaxed | FCA | 93.612 | 1.235 | 0.080 |
+[25239.8s] | node_extent_thresh | relaxed | FCB | 92.184 | -0.691 | 0.081 |
+[25239.8s] | node_extent_thresh | strict | FA | 91.959 | -0.064 | 0.097 |
+[25239.8s] | node_extent_thresh | strict | FCA | 80.978 | -11.399 | 0.272 |
+[25239.8s] | node_extent_thresh | strict | FCB | 87.899 | -4.976 | 0.161 |
+[25239.8s] | node_center_thresh | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | node_center_thresh | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | node_center_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | node_center_thresh | strict | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | node_center_thresh | strict | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | node_center_thresh | strict | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | head_thresh | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | head_thresh | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | head_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | head_thresh | strict | FA | 92.079 | 0.055 | 0.095 |
+[25239.8s] | head_thresh | strict | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | head_thresh | strict | FCB | 92.903 | 0.028 | 0.077 |
+[25239.8s] | tail_thresh | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | tail_thresh | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | tail_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | tail_thresh | strict | FA | 92.133 | 0.110 | 0.095 |
+[25239.8s] | tail_thresh | strict | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | tail_thresh | strict | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | shaft_thresh | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | shaft_thresh | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | shaft_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | shaft_thresh | strict | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | shaft_thresh | strict | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | shaft_thresh | strict | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | skeleton_thresh | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | skeleton_thresh | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | skeleton_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | skeleton_thresh | strict | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | skeleton_thresh | strict | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | skeleton_thresh | strict | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | support_thresh | relaxed | FA | 91.969 | -0.055 | 0.096 |
+[25239.8s] | support_thresh | relaxed | FCA | 92.333 | -0.044 | 0.102 |
+[25239.8s] | support_thresh | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | support_thresh | strict | FA | 91.959 | -0.064 | 0.097 |
+[25239.8s] | support_thresh | strict | FCA | 92.245 | -0.132 | 0.104 |
+[25239.8s] | support_thresh | strict | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | min_arrow_confidence | relaxed | FA | 92.024 | 0.000 | 0.096 |
+[25239.8s] | min_arrow_confidence | relaxed | FCA | 92.377 | 0.000 | 0.103 |
+[25239.8s] | min_arrow_confidence | relaxed | FCB | 92.875 | 0.000 | 0.077 |
+[25239.8s] | min_arrow_confidence | strict | FA | 92.014 | -0.010 | 0.096 |
+[25239.8s] | min_arrow_confidence | strict | FCA | 92.453 | 0.076 | 0.103 |
+[25239.8s] | min_arrow_confidence | strict | FCB | 92.875 | 0.000 | 0.077 |## 6. Mechanistic action countsThe CSV `stage2_action_counts.csv` records candidate generation, Pass-I selection, final edge count, endpoint repairs, fallback removals, duplicate removals, candidate resurrections, and node refinements for each individual threshold perturbation. These counts should be used to explain whether a sensitive parameter acts by suppressing candidate generation, changing edge selection, or increasing downstream repair.## 7. Stage-2 interpretationThe largest individual-parameter response is produced by **node_extent_thresh**, with |Δ Link F1| = **6.051 p.p.** under the **strict** condition. Its worst observed change is -6.051 p.p. and its maximum nSEE increase is +0.1010.On the strict side specifically, **node_extent_thresh** causes the largest Link-F1 decrease (-6.051 p.p.).## 8. Paper-ready methods wordingBecause the group-level screen localized sensitivity to evidence admission, a second-stage analysis perturbed each evidence-admission parameter independently by ±20% in behavioural space while holding all remaining parameters fixed. The tested quantities were the adaptive node-extent, node-center, head, tail, shaft, skeleton, and fused-support thresholds together with the minimum arrow-confidence threshold. Adaptive thresholds were modified only after per-image calibration, and neural predictions were shared across all conditions.## 9. Paper-ready result wording (generated from this run)Parameter-level analysis within evidence admission showed that the largest individual change was associated with node_extent_thresh, for which the maximum absolute Link-F1 deviation was 6.05 percentage points under the strict perturbation. The remaining parameters are reported separately together with precision/recall and family-wise results, allowing the group-level sensitivity to be localized rather than attributed uniformly to all thresholds.## 10. Files produced- `stage2_overall.csv` — baseline and individual-parameter headline metrics- `stage2_by_family.csv` — FA/FCA/FCB parameter-level results- `stage2_action_counts.csv` — mechanism counts for each parameter variant- `stage2_parameter_ranking.csv` — parameters ranked by Link-F1 sensitivity- `stage2_parameter_manifest.csv` — exact behavioural perturbation directions- `stage2_results.json` — complete machine-readable report- `stage2_link_f1_delta.png` — parameter-level sensitivity visualization- `stage2_report.md` — paste-ready report
+[25239.8s] Completed 450 samples in 419.94 minutes.

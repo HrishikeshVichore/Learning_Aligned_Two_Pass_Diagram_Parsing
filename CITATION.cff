@@ -1,8 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this software or its derived annotations, please cite the accompanying paper and this software release."
-title: "Topology-Aware Structural Parsing of Hand-Drawn Diagrams via Learning-Aligned Decoding: Reproduction Materials"
+title: "Topology-Aware Structural Parsing of Hand-Drawn Diagrams via Learning-Aligned Decoding: Reproduction and Revision Materials"
 type: software
-version: 1.0.0
+version: 2.0.0
+date-released: 2026-10-06
 authors:
   - family-names: Vichore
     given-names: Hrishikesh
@@ -21,4 +22,7 @@ keywords:
   - flowchart parsing
   - finite automata
   - document analysis
-  - deep learning
+  - topology-aware decoding
+  - structural assembly
+  - parameter sensitivity
+  - Arrow R-CNN

@@ -1,18 +1,5 @@
-# Reproduction outputs
+# Sample outputs
 
-`02_Run_Two_Pass_Inference_and_Evaluation.ipynb` writes its results here when
-run through the master reproduction notebook.
+The publication notebooks write generated predictions, metric CSV/JSON files, manifests, sensitivity tables, and optional debug visualizations under the configurable `outputs/` directory.
 
-Typical generated content includes:
-
-```text
-sample_outputs/final_run/
-├── predictions/
-├── metrics/
-├── debug/
-└── reproduction_manifest.json
-```
-
-The metric folder contains overall, per-image, per-family, and manuscript-table
-outputs. Only results generated with the frozen release checkpoints and the
-complete held-out test set should be treated as paper-reproduction results.
+Generated run outputs are not frozen into this release because they can be reproduced from the notebooks and checkpoints. The machine-readable final manuscript reference profile is stored at the repository root in `MANUSCRIPT_REPORTED_RESULTS.json`, while saved console evidence from long-running revision experiments is retained under `logs/`.

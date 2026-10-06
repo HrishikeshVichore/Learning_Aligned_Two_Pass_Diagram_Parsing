@@ -1,7 +1,7 @@
 # Data, annotations, and model notice
 
-The Apache License 2.0 in this repository applies to the original code and
-documentation authored for this project. It does not grant rights in
+The Apache License 2.0 in this repository applies to the original source code
+and documentation authored for this project. It does not grant rights in
 third-party dataset images or source annotations.
 
 ## Original dataset source
@@ -18,18 +18,23 @@ The source repository states that:
 - FA, FC_B, and FC_Bscan do not have a licence listed there.
 
 Users must obtain the original datasets from their authorized source and comply
-with all applicable licence, citation, and usage conditions.
+with the applicable licence, citation, and usage conditions.
+
 
 ## Derived artifacts
 
-The following release materials are derived from the source datasets:
+The following are derived from the source datasets:
 
 - converted per-image graph annotations;
+- curated node-instance masks;
 - trained model checkpoints;
-- generated predictions and evaluation examples.
+- generated evaluation examples.
 
 Distribution and use of these artifacts may remain subject to the terms of the
-underlying datasets. Their inclusion does not transfer ownership of or grant
-additional rights in the original images.
+underlying datasets. Their presence in an archive does not transfer ownership
+of or grant additional rights in the original images.
+
+Before public release, the authors should verify the intended distribution of
+each derived artifact against the source terms and institutional guidance.
 
 This notice is provided for repository clarity and is not legal advice.

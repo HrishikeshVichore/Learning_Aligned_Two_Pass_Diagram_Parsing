@@ -1,0 +1,42 @@
+{
+  "title": "Topology-Aware Structural Parsing of Hand-Drawn Diagrams via Learning-Aligned Decoding: Reproduction and Revision Materials",
+  "upload_type": "software",
+  "description": "Version-2 reproduction and peer-review revision materials for topology-aware visual-to-graph parsing of offline hand-drawn flowcharts and finite automata. Includes the complete proposed-method workflow, corrected mBox-IoU/nSEE evaluation, parameter-sensitivity experiments, a common-protocol Arrow R-CNN baseline, derived annotations, node masks, and cleaned long-run execution logs.",
+  "creators": [
+    {
+      "name": "Vichore, Hrishikesh",
+      "orcid": "0009-0004-0315-7924",
+      "affiliation": "Visvesvaraya National Institute of Technology, Nagpur"
+    },
+    {
+      "name": "Radke, Mansi",
+      "affiliation": "Visvesvaraya National Institute of Technology, Nagpur"
+    },
+    {
+      "name": "Kumar, Praveen",
+      "affiliation": "Visvesvaraya National Institute of Technology, Nagpur"
+    }
+  ],
+  "license": "Apache-2.0",
+  "keywords": [
+    "handwritten diagram recognition",
+    "graph reconstruction",
+    "flowchart parsing",
+    "finite automata",
+    "document image analysis",
+    "topology-aware decoding",
+    "Arrow R-CNN"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.21698308",
+      "relation": "isNewVersionOf",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "https://github.com/bernhardschaefer/handwritten-diagram-datasets",
+      "relation": "references",
+      "resource_type": "dataset"
+    }
+  ]
+}
